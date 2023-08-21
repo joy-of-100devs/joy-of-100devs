@@ -3,8 +3,6 @@ import * as fs from "fs";
 import matter from "gray-matter";
 import React from "react";
 import SerializableFileHelper from "@/helpers/fileHelper";
-import {stringifyQuery} from "next/dist/server/server-route-utils";
-import exp from "constants";
 
 const CONTENT_ROOT = path.join(process.cwd(), "src", "content");
 
