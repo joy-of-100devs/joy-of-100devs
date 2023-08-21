@@ -1,0 +1,3 @@
+.button {
+    @apply bg-accent-5 text-button font-[600]
+}

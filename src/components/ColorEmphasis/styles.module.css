@@ -1,0 +1,7 @@
+.emphasis {
+    background: linear-gradient(var(--color-accent-3), var(--color-accent-4));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: 600;
+}

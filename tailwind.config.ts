@@ -13,6 +13,21 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      colors: {
+        'accent-1': 'var(--color-accent-1)',
+        'accent-2': 'var(--color-accent-2)',
+        'accent-3': 'var(--color-accent-3)',
+        'accent-4': 'var(--color-accent-4)',
+        'accent-5': 'var(--color-accent-5)',
+        'button': 'var(--color-button)',
+        'error': 'var(--color-error)',
+        'warning': 'var(--color-warning)',
+        'success': 'var(--color-success)',
+        'info': 'var(--color-info)',
+        'background-1': 'var(--color-background-1)',
+        'background-2': 'var(--color-background-2)',
+        'primary': 'var(--color-primary)',
+      }
     },
   },
   plugins: [],

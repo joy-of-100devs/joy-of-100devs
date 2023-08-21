@@ -3,25 +3,102 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    --color-accent-3: none;
+    --color-accent-4: none;
+    --color-accent-5: none;
+    --color-accent-2: none;
+    --color-accent-1: none;
+    --color-primary: none;
+    --color-secondary: none;
+    --color-background-1: none;
+    --color-background-2: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+html {
+    width: 100%;
+    height: 100%;
+    color: var(--color-primary);
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background: radial-gradient(140% 100% at 50% 100%, transparent 49%, var(--color-accent-2) 50%, var(--color-accent-2) 52%, transparent 53%) 0 0 / 50px 100px,
+    radial-gradient(140% 100% at 50% 100%, transparent 49%, var(--color-accent-2) 50%, var(--color-accent-2) 52%, transparent 53%) 25px 50px / 50px 100px,
+    var(--color-accent-1);
+}
+
+h1 {
+    font-size: 1.75rem;
+    font-weight: 650;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.25rem;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    font-weight: 500;
+}
+
+p {
+    margin-block: 1em;
+}
+
+a {
+    color: currentColor;
+    text-decoration-color: var(--color-primary);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.125em;
+    font-weight: 500;
+    transition: all 200ms;
+}
+
+a:hover {
+    text-underline-offset: 0.175em;
+}
+
+button {
+    padding: 0;
+}
+
+@media (min-width: 35rem) {
+    h1 {
+        font-size: 2.25rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+}
+
+::-webkit-scrollbar {
+    appearance: none;
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: linear-gradient(var(--color-accent-3), var(--color-accent-4));
+}
+
+::-webkit-scrollbar-corner {
+    display: none;
+}
+
+* {
+    scrollbar-color: var(--color-accent-3) transparent;
+    scrollbar-width: thin;
 }
