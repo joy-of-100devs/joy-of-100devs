@@ -32,7 +32,7 @@ const NAV_LINKS = [
 function DashboardNav() {
   return <nav className={"flex-none md:min-w-[15rem] flex rounded-[8px] p-[8px]  px-[12px] overflow-auto flex-col bg-background-1"}>
     <Logo></Logo>
-    <ul>
+    <ul className={"list-none pl-0"}>
       {NAV_LINKS.map(link => {
         return <li key={link.href}>
           <IconLink className={"gap-[12px] hover:bg-background-2 justify-center md:justify-start"} iconClassName={"w-8 h-8"} href={link.href} icon={link.icon}>

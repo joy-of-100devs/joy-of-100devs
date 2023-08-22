@@ -32,7 +32,7 @@ async function _Image(props: ImageProps) {
     }>(props.slug).then(res => res.data)
 
     return <NextImage src={asset.data.url} width={asset.data.width} height={asset.data.height} alt={props.alt}
-                      className={props.className}></NextImage>;
+                      className={`${props.className || ''} rounded-[8px] my-4`}></NextImage>;
 }
 
 

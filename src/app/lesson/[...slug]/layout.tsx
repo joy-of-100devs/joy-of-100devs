@@ -33,7 +33,7 @@ export default async function LessonPageLayout(props: React.PropsWithChildren & 
                     })}
                 </LessonNav>
                 <main className={"flex-1 flex overflow-hidden justify-center"}>
-                    <div className={"flex w-full flex-col overflow-y-scroll overflow-x-hidden gap-4 max-w-[1920px] pr-[8px] pb-8"}>
+                    <div className={"flex w-full flex-col overflow-y-scroll overflow-x-hidden gap-4 max-w-[1600px] pr-[8px] pb-8"}>
                         {props.children}
                     </div>
                 </main>

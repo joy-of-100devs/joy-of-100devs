@@ -70,6 +70,10 @@ button {
     padding: 0;
 }
 
+ul, ol {
+    @apply pl-6 list-disc my-6
+}
+
 @media (min-width: 35rem) {
     h1 {
         font-size: 2.25rem;

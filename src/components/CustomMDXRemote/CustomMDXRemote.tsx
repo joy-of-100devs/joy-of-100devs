@@ -14,7 +14,7 @@ const COMPONENT_MAP = {
     },
     h3: ({children, ...props}: ComponentProps<"h3">) => {
         return <h3 {...props}><ColorEmphasis>{children}</ColorEmphasis></h3>;
-    }
+    },
 };
 
 function CustomMDXRemote({source}: { source: string }) {
