@@ -6,12 +6,12 @@ import SerializableFileHelper from "@/helpers/fileHelper";
 
 const CONTENT_ROOT = path.join(process.cwd(), "src", "content");
 
-interface ModuleInfo {
+export interface ModuleInfo {
     title: string;
     description: string;
 }
 
-interface LessonMetadata {
+export interface LessonMetadata {
     title: string;
     description: string;
 }
@@ -77,3 +77,17 @@ export const loadModuleInfo = React.cache(async function loadModuleInfo(slug: st
     };
 });
 
+export const scanModules = React.cache(async function scanModules() {
+    const promises = [];
+    for (let path of await fs.promises.readdir(CONTENT_ROOT)) {
+        promises.push(loadModuleInfo(path));
+    }
+    const resolved = await Promise.allSettled(promises);
+    const modules = [];
+    for (let resolvedItem of resolved) {
+        if (resolvedItem.status === 'fulfilled') {
+            modules.push(resolvedItem.value);
+        }
+    }
+    return modules;
+});

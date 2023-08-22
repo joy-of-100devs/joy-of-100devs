@@ -29,12 +29,15 @@ export async function generateMetadata(pageParams: LessonPageParameters): Promis
 export default async function Lesson(props: LessonPageProps) {
     const lesson = await loadLesson(props.params.slug.join("/"));
     return <>
-        <article className={'bg-background-1 p-[16px] rounded-[8px] pt-12 px-8 xl:px-32 2xl:px-[16rem]'}>
-            <h1>
-                <ColorEmphasis>{lesson.meta.title}</ColorEmphasis>
-            </h1>
-            <CustomMDXRemote source={lesson.content}></CustomMDXRemote>
-        </article>
+        <div className={"relative"}>
+            <div className={"absolute w-full h-full rounded-[8px] bg-background-1 opacity-60"}></div>
+            <article className={'relative p-[16px] pt-12 px-8 xl:px-32 2xl:px-[16rem]'}>
+                <h1>
+                    <ColorEmphasis>{lesson.meta.title}</ColorEmphasis>
+                </h1>
+                <CustomMDXRemote source={lesson.content}></CustomMDXRemote>
+            </article>
+        </div>
         <div className={"flex justify-between items-center"}>
             <IconButton className={"bg-error"} icon={BiError}>Report Problem</IconButton>
             <LessonCompletionButton slug={props.params.slug}></LessonCompletionButton>

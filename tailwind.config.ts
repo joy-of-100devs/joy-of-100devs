@@ -19,6 +19,7 @@ const config: Config = {
         'accent-3': 'var(--color-accent-3)',
         'accent-4': 'var(--color-accent-4)',
         'accent-5': 'var(--color-accent-5)',
+        'accent-6': 'var(--color-accent-6)',
         'button': 'var(--color-button)',
         'error': 'var(--color-error)',
         'warning': 'var(--color-warning)',

@@ -22,8 +22,6 @@ export function LessonNavProvider(props: {children?: React.ReactNode}) {
         setMobileShown(s => !s);
     }, []);
 
-    console.log(mobileShown);
-
     return <LessonNavContext.Provider value={{mobileShown, toggleMobileShown, setMobileShown}}>
         {props.children}
     </LessonNavContext.Provider>
@@ -34,8 +32,8 @@ function LessonNav(props: { children?: React.ReactNode }) {
 
     return <nav onBlur={e => {
         setMobileShown(false);
-    }} className={`${mobileShown ? "absolute flex h-full" : 'hidden'}
-        md:flex md:static outline outline-[2px] outline-background-2 md:outline-none flex-col flex-none w-[15rem] bg-background-1 rounded-[8px] p-[8px]`}>
+    }} className={`${mobileShown ? "flex z-[1] h-full opacity-100" : 'opacity-0 z-[-1]'}
+        transition-opacity md:z-[1] md:transition-none absolute md:opacity-100 md:flex md:static outline outline-[2px] outline-background-2 md:outline-none flex-col flex-none w-[15rem] bg-background-1 rounded-[8px] p-[12px]`}>
         {props.children}
     </nav>;
 }

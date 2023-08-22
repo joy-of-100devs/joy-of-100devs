@@ -1,0 +1,22 @@
+.star {
+    background: #ffca67;
+    @apply absolute aspect-square rounded-full;
+    animation: oscillate ease-in-out infinite;
+    transform: translate(-50%, -50%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .star {
+        animation: none;
+    }
+}
+
+@keyframes oscillate {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+}

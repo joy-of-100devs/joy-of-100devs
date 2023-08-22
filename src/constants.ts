@@ -15,6 +15,8 @@ export const THEME_COLORS: Record<Theme, React.CSSProperties> = {
         '--color-accent-3': "#ffc867",
         '--color-accent-4': "#ffc376",
         '--color-accent-5': "#d79e3b",
+        '--color-accent-6': "#b78d04",
+
         '--color-error': "#f65f5f",
         '--color-warning': "#e8c878",
         '--color-success': "#5cb463",
@@ -31,6 +33,7 @@ export const THEME_COLORS: Record<Theme, React.CSSProperties> = {
         '--color-accent-3': "#ffef9d",
         '--color-accent-4': "#ffe367",
         '--color-accent-5': "#e8d510",
+        '--color-accent-6': "#a18e08",
         '--color-error': "#c23434",
         '--color-warning': "#8f7110",
         '--color-success': "#2cab36",

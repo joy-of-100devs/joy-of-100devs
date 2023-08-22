@@ -23,12 +23,10 @@ export default async function LessonPageLayout(props: React.PropsWithChildren & 
                     <IconLink className={"hover:bg-background-2"} icon={FaHome} href={"/"}></IconLink>
                 </nav>
                 <div className={"flex items-center gap-[16px] overflow-auto"}>
-                    <Link className={"w-max flex-none"} href={`/module/${moduleInfo.slug}`}>Module {moduleInfo.number} - {moduleInfo.data.title}</Link>
-                    <AiOutlineRight className={"flex-none"}></AiOutlineRight>
-                    <span className={"w-max flex-none"}>{lessonInfo.meta.title}</span>
+                    <span className={"w-max flex-none"}>Module {moduleInfo.number} - {moduleInfo.data.title}</span>
                 </div>
             </header>
-            <div className={"flex-1 flex relative h-0 flex-1 gap-[16px] mr-[-8px]"}>
+            <div className={"flex-1 flex relative h-0 gap-[16px] mr-[-8px]"}>
                 <LessonNav>
                     {moduleInfo.lessons.map(lesson => {
                         return <LessonLink key={lesson.slug} slug={lesson.slug} isActive={props.params.slug.join("/") === lesson.slug} title={lesson.meta.title}></LessonLink>
