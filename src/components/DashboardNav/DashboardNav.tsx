@@ -1,11 +1,10 @@
-"use client";
-
 import * as React from 'react';
 import Logo from "@/components/Logo";
 import {IconLink} from "@/components/IconButton";
 import {BiBook, BiStar} from "react-icons/bi";
 import {PiTelevision} from "react-icons/pi";
 import {BsCalendar4Event} from "react-icons/bs";
+import DashboardCurrentUser from "@/components/DashboardCurrentUser";
 
 const NAV_LINKS = [
   {
@@ -41,6 +40,7 @@ function DashboardNav() {
         </li>
       })}
     </ul>
+    <DashboardCurrentUser></DashboardCurrentUser>
   </nav>
 }
 

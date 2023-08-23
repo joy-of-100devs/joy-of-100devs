@@ -4,6 +4,7 @@ import {Inter} from 'next/font/google';
 import React from "react";
 import ThemeConfigServerProvider from "@/components/ThemeConfigServerProvider";
 import StarrySky from "@/components/StarrySky";
+import SessionProvider from "@/components/SessionProvider";
 
 const inter = Inter({subsets: ['latin']});
 
@@ -18,11 +19,13 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <ThemeConfigServerProvider lang="en">
-            <body className={inter.className}>
+        <SessionProvider>
+            <ThemeConfigServerProvider lang="en">
+                <body className={inter.className}>
                 <StarrySky></StarrySky>
                 {children}
-            </body>
-        </ThemeConfigServerProvider>
+                </body>
+            </ThemeConfigServerProvider>
+        </SessionProvider>
     );
 }
