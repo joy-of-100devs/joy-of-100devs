@@ -29,7 +29,7 @@ const NAV_LINKS = [
   },
 ]
 function DashboardNav() {
-  return <nav className={"flex-none md:min-w-[15rem] flex rounded-[8px] p-[8px]  px-[12px] overflow-auto flex-col bg-background-1"}>
+  return <nav className={"flex-none md:w-[15rem] flex rounded-[8px] p-[8px]  px-[12px] overflow-y-auto overflow-x-hidden flex-col bg-background-1"}>
     <Logo></Logo>
     <ul className={"list-none pl-0"}>
       {NAV_LINKS.map(link => {
@@ -40,6 +40,7 @@ function DashboardNav() {
         </li>
       })}
     </ul>
+    <div className={"h-0 flex-1"}></div>
     <DashboardCurrentUser></DashboardCurrentUser>
   </nav>
 }

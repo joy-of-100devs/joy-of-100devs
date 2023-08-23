@@ -1,11 +1,11 @@
 import "server-only";
 import NextAuth, {NextAuthOptions} from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-import {MongoDBAdapter} from "@auth/mongodb-adapter";
-import {pendingMongoRawClient} from "@/lib/database";
+import {MongoDBAdapter} from "@next-auth/mongodb-adapter";
+import {pendingRawClient} from "@/lib/database";
 import {COLLECTION_NAME as USER_COLLECTION_NAME} from "@/domains/users/model";
 
-const adapter = MongoDBAdapter(pendingMongoRawClient, {
+const adapter = MongoDBAdapter(pendingRawClient, {
     databaseName: process.env.DB_NAME,
     collections: {
         Users: USER_COLLECTION_NAME

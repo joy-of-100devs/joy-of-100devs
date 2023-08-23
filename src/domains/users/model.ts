@@ -7,8 +7,10 @@ export interface IUser {
     email: string;
     image?: string;
     imageCloudId?: string;
-    emailVerified: boolean|null;
+    emailVerified: boolean | null;
 }
+
+export type ISessionUser = Pick<IUser, "name"|"email"|"image">
 
 export const DB_NAME = "User";
 export const COLLECTION_NAME = "users";
@@ -33,5 +35,5 @@ const UserSchema = new mongoose.Schema<IUser>({
     }
 });
 
-const User = mongoose.model<IUser>(DB_NAME, UserSchema, COLLECTION_NAME);
+const User: mongoose.Model<IUser> = mongoose.models[DB_NAME] || mongoose.model(DB_NAME, UserSchema, COLLECTION_NAME);
 export default User;

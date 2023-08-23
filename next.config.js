@@ -9,8 +9,13 @@ const nextConfig = {
                 port: ASSET_SERVER_URL.port,
                 hostname: ASSET_SERVER_URL.hostname,
                 protocol: ASSET_SERVER_URL.protocol.replaceAll(/\W/g, ""),
+            },
+            {
+                protocol: "https",
+                hostname: "*.googleusercontent.com",
             }
-        ]
+        ],
+        domains: ["*.googleusercontent.com"]
     },
     webpack(config) {
         // Grab the existing rule that handles SVG imports

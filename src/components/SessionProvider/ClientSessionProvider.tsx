@@ -9,7 +9,7 @@ interface ProviderProps {
 }
 
 export default function ClientSessionProvider(props: ProviderProps) {
-    return <SessionProvider>
+    return <SessionProvider session={props.initialSession}>
         {props.children}
     </SessionProvider>
 }

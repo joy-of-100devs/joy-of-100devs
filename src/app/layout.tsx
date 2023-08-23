@@ -5,6 +5,7 @@ import React from "react";
 import ThemeConfigServerProvider from "@/components/ThemeConfigServerProvider";
 import StarrySky from "@/components/StarrySky";
 import SessionProvider from "@/components/SessionProvider";
+import LoadingScreenWrapper from "../components/LoadingScreenWrapper";
 
 const inter = Inter({subsets: ['latin']});
 
@@ -22,8 +23,10 @@ export default function RootLayout({
         <SessionProvider>
             <ThemeConfigServerProvider lang="en">
                 <body className={inter.className}>
-                <StarrySky></StarrySky>
-                {children}
+                <LoadingScreenWrapper>
+                    <StarrySky></StarrySky>
+                    {children}
+                </LoadingScreenWrapper>
                 </body>
             </ThemeConfigServerProvider>
         </SessionProvider>

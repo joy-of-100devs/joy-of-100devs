@@ -1,4 +1,3 @@
-
 declare module "*.svg" {
     import React from "react";
 
@@ -9,4 +8,5 @@ declare module "*.svg" {
 declare module "svgdom" {
     export function createSVGWindow(): Window
 }
+
 

@@ -7,6 +7,8 @@ import {IconLink} from "@/components/IconButton";
 import {FaPlay} from "react-icons/fa";
 import path from "path";
 import {AnimatePresence, motion} from "framer-motion";
+import {clickShouldStartNavigation} from "@/helpers/mouseHelper";
+import {LoadingScreenContext} from "@/components/LoadingScreenWrapper";
 
 export interface LessonTileProps {
     top: string;
@@ -15,6 +17,8 @@ export interface LessonTileProps {
 }
 
 function LessonTile(props: LessonTileProps) {
+    const {setLoading} = React.useContext(LoadingScreenContext);
+
     return <Popover.Root>
         <Popover.Trigger asChild={true}>
             <button style={{
@@ -46,7 +50,11 @@ function LessonTile(props: LessonTileProps) {
                         <Popover.Arrow className={"fill-accent-6"}></Popover.Arrow>
                         <div className={"p-[12px] px-[16px] bg-accent-6 flex flex-col gap-2 rounded-[16px]"}>
                             <h3 className={"m-0"}>{props.lesson.meta.title}</h3>
-                            <IconLink icon={FaPlay} href={path.join("/lesson", props.lesson.slug)}
+                            <IconLink onClick={e => {
+                                if (clickShouldStartNavigation(e)) {
+                                    setLoading(true);
+                                }
+                            }} icon={FaPlay} href={path.join("/lesson", props.lesson.slug)}
                                       className={"justify-center bg-background-2"}>Start Lesson</IconLink>
                         </div>
                     </motion.div>
