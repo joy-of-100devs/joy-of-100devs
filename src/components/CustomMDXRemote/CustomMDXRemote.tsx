@@ -5,6 +5,7 @@ import {ComponentProps} from "react";
 import AuthorNotes from "@/components/AuthorNotes";
 import ServerImage from "../ServerImage";
 import CodeSnippet from "@/components/CodeSnippet";
+import CodePlayground from "@/components/CodePlayground";
 
 const COMPONENT_MAP = {
     ColorEmphasis: ColorEmphasis,
@@ -16,7 +17,8 @@ const COMPONENT_MAP = {
     h3: ({children, ...props}: ComponentProps<"h3">) => {
         return <h3 {...props}><ColorEmphasis>{children}</ColorEmphasis></h3>;
     },
-    code: CodeSnippet
+    code: CodeSnippet,
+    CodePlayground: CodePlayground,
 };
 
 function CustomMDXRemote({source}: { source: string }) {

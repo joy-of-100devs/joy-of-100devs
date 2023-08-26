@@ -1,0 +1,86 @@
+.layout {
+    @apply flex flex-col lg:flex-row bg-[#0003] rounded-[8px] mx-[-16px] items-stretch
+}
+
+.fileExplorer {
+    @apply h-full min-h-[30rem] hidden lg:flex flex-col px-[12px] py-[8px] items-stretch bg-[#0003]
+}
+
+
+.root :global(.sp-button) {
+    @apply flex items-center gap-[4px] py-1 transition-colors hover:text-accent-3 focus:text-accent-3 w-full
+}
+
+.root :global(.sp-button)[data-active=true] {
+    @apply text-accent-4
+}
+
+.root :global(.sp-editor) {
+    @apply flex flex-col pl-[0] h-full min-h-[30rem] text-sm
+}
+
+.root :global(.sp-code-editor) {
+    @apply flex-1 flex flex-col
+}
+
+.root :global(.cm-scroller) {
+    @apply flex-1
+}
+
+.root :global(.sp-cm) {
+    @apply flex flex-col flex-1 h-full;
+    font-family: "Fira Mono", monospace, system-ui
+}
+
+.root :global(.cm-editor) {
+    @apply flex flex-col flex-1 h-full items-stretch
+}
+
+.root :global(.cm-scroller)::before {
+    content: "";
+    @apply absolute w-5 bg-[#0002] left-0 top-0 h-full;
+}
+
+.root :global(.cm-scroller) {
+    @apply py-[8px]
+}
+
+.root :global(.cm-gutters) {
+    @apply w-5 items-stretch;
+}
+
+.root :global(.cm-activeLine) {
+    @apply bg-[#0006]
+}
+
+.root :global(.cm-line) {
+    --sp-space-1: 1ch;
+}
+
+.root :global(.cm-gutter) {
+    @apply w-full h-full justify-center items-center
+}
+
+.root :global(.cm-editor) :global(.cm-gutterElement) {
+    @apply items-center flex flex-col
+}
+
+.preview :global(.sp-preview-iframe) {
+    @apply bg-white
+}
+
+.preview :global(.sp-preview-container) {
+    @apply h-full relative
+}
+
+.preview :global(.sp-preview-iframe) {
+    @apply h-full w-full  min-h-[20rem]
+}
+
+.preview :global(.sp-preview-actions) {
+    @apply absolute flex bottom-[-8px] right-[-8px]
+}
+
+.preview :global(.sp-loading) {
+    @apply absolute w-full h-full top-0 left-0
+}
