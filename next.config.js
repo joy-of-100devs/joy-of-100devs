@@ -7,12 +7,11 @@ const nextConfig = {
         remotePatterns: [
             {
                 hostname: ASSET_SERVER_URL.hostname,
-                protocol: ASSET_SERVER_URL.protocol.replaceAll(/\W/g, ""),
             },
             {
                 protocol: "https",
                 hostname: "*.googleusercontent.com",
-            }
+            },
         ],
         domains: ["*.googleusercontent.com"]
     },
