@@ -16,7 +16,6 @@ const nextConfig = {
                 hostname: "*",
             }
         ],
-        domains: ["*.googleusercontent.com"]
     },
     webpack(config) {
         // Grab the existing rule that handles SVG imports
