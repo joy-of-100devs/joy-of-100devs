@@ -5,17 +5,17 @@ const nextConfig = {
     reactStrictMode: true,
     images: {
         remotePatterns: [
-            // {
-            //     hostname: ASSET_SERVER_URL.hostname,
-            // },
+            {
+                hostname: ASSET_SERVER_URL.hostname,
+            },
             {
                 protocol: "https",
                 hostname: "*.googleusercontent.com",
             },
-            {
-                hostname: "*",
-            }
         ],
+        domains: [
+            ASSET_SERVER_URL.hostname,
+        ]
     },
     webpack(config) {
         // Grab the existing rule that handles SVG imports
