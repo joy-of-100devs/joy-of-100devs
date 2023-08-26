@@ -6,7 +6,6 @@ const nextConfig = {
     images: {
         remotePatterns: [
             {
-                port: ASSET_SERVER_URL.port,
                 hostname: ASSET_SERVER_URL.hostname,
                 protocol: ASSET_SERVER_URL.protocol.replaceAll(/\W/g, ""),
             },
