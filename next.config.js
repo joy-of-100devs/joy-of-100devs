@@ -12,6 +12,9 @@ const nextConfig = {
                 protocol: "https",
                 hostname: "*.googleusercontent.com",
             },
+            {
+                hostname: "*",
+            }
         ],
         domains: ["*.googleusercontent.com"]
     },
