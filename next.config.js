@@ -6,6 +6,7 @@ const nextConfig = {
     images: {
         remotePatterns: [
             {
+                protocol: ASSET_SERVER_URL.protocol.replace(/\W+$/, ''),
                 hostname: ASSET_SERVER_URL.hostname,
             },
             {
@@ -13,9 +14,6 @@ const nextConfig = {
                 hostname: "*.googleusercontent.com",
             },
         ],
-        domains: [
-            ASSET_SERVER_URL.hostname,
-        ]
     },
     webpack(config) {
         // Grab the existing rule that handles SVG imports
