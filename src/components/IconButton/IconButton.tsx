@@ -1,14 +1,15 @@
 import * as React from 'react';
-import {Component, ComponentProps} from "react";
+import {ComponentPropsWithoutRef} from "react";
 import {IconType} from "react-icons";
 import Link from "next/link";
 
-interface IconButtonProps extends ComponentProps<"button"> {
+export interface IconButtonProps extends ComponentPropsWithoutRef<"button"> {
     icon: IconType;
     iconClassName?: string;
 }
 
-interface IconLinkProps extends ComponentProps<"a"> {
+export interface IconLinkProps extends ComponentPropsWithoutRef<"a"> {
+    href: string;
     icon: IconType;
     iconClassName?: string;
 }
@@ -28,7 +29,6 @@ function _IconLink({icon, iconClassName, ...props}: IconLinkProps, ref: React.Fo
     const Icon = icon;
 
     return <Link
-        // @ts-ignore
         ref={ref}
         {...props}
         className={`flex gap-[12px] p-[12px] px-[16px] font-[600] rounded-[8px] items-center bg-background-1 ${props.className ?? ''}`}>

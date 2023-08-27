@@ -28,6 +28,7 @@ const config: Config = {
         'background-1': 'var(--color-background-1)',
         'background-2': 'var(--color-background-2)',
         'primary': 'var(--color-primary)',
+        'border-1': 'var(--color-border-1)',
       }
     },
   },
