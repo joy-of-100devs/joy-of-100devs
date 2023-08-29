@@ -3,26 +3,40 @@ import {
     SandpackConsole,
     SandpackFileExplorer,
     SandpackLayout,
-    SandpackPreview, useSandpack
+    SandpackPreview, useActiveCode, useSandpack
 } from "@codesandbox/sandpack-react/unstyled";
 import styles from "@/components/CodePlayground/styles.module.css";
 import CodePlaygroundEditor from "@/components/CodePlayground/CodePlaygroundEditor";
 import ColorEmphasis from "@/components/ColorEmphasis";
 import {z} from "zod";
 import {capitalize} from "lodash";
-import IconButton from "@/components/IconButton";
-import {BiRefresh} from "react-icons/bi";
+import PlaygroundUtilityButton, {CodeSandboxButton} from "@/components/CodePlayground/PlaygroundUtilityButton";
+import {RxMagicWand, RxOpenInNewWindow, RxReload} from "react-icons/rx";
+import prettier from "prettier/standalone";
+import {useCodeFormatter} from "@/helpers/codePlaygroundHelper";
 
 const PREVIEW_MODES = z.enum(["browser", "console"]);
 type PreviewMode = z.infer<typeof PREVIEW_MODES>;
 
 export default function CodePlaygroundLayout() {
     const [previewMode, setPreviewMode] = React.useState<PreviewMode>("browser");
+    const {code, updateCode} = useActiveCode();
     const sandpack = useSandpack();
+    const formatCode = useCodeFormatter();
 
     return <SandpackLayout className={styles.layout}>
         <div className={styles.mainNavigation}>
             <ColorEmphasis>Code Playground</ColorEmphasis>
+            <div className={"flex-none flex gap-[8px] items-center"}>
+                <PlaygroundUtilityButton icon={RxMagicWand} onClick={async () => {
+                    const newCode = await formatCode(code);
+                    updateCode(newCode, true);
+                }}></PlaygroundUtilityButton>
+                <PlaygroundUtilityButton icon={RxReload} onClick={() => {
+                    sandpack.sandpack.resetAllFiles();
+                }}></PlaygroundUtilityButton>
+                <CodeSandboxButton></CodeSandboxButton>
+            </div>
         </div>
         <div className={styles.innerLayout}>
             <SandpackFileExplorer className={styles.fileExplorer}></SandpackFileExplorer>

@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-type AuthorNoteVariant = "error" | "warning" | "success" | "info";
+type AuthorNoteVariant = "critical" | "warning" | "recommendation" | "info";
 
 const classNames: Record<AuthorNoteVariant, string> = {
-    error: "bg-error",
+    critical: "bg-error",
     info: "bg-info",
-    success: "bg-success",
+    recommendation: "bg-success",
     warning: "bg-warning",
 }
 

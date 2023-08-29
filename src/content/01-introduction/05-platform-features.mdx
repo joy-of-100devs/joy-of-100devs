@@ -8,5 +8,29 @@ There are a bunch of features that makes this course stand out among other cours
 ## Code Playgrounds
 
 You'll see beautiful [WIP] code playgrounds like these scattered throughout the platform, like this one:
-<CodePlayground></CodePlayground>
+<CodePlayground repository={"/01/05/preview-playground"}></CodePlayground>
 
+The code playground has some features:
+- Click on the magic wand on the top right to make your code look neater.
+- Click on the circular arrow to reset everything back to original.
+- Click on the arrow box to open the code playground in CodeSandbox - basically a much more robust version of
+this code playground that can pay for features like server-side code and asset hosting.
+- Edit any of the files, and you will see them reflected in the preview window.
+- Go to the console tab to get logs - you'll learn about the console when we get to the Javascript module.
+- Your code will be auto-saved. If there is a bugs in your saved code snippets, you can always reset by clicking the
+circular arrow on the top right.
+
+<AuthorNotes heading={"Playground Limitations"} variant={"warning"}>
+    The code playgrounds are powered by Sandpack, which is meant to be a lightweight technology to run code snippets on the web.
+    Because of that, there are some **big** technical caveats with the playground:
+
+    - You can't put images, videos or any non-text files inside the playground, even if it is an SVG.
+    - You can't create new files or delete files (yet). I will be working on a context menu and modal
+    that help with this process soon.
+    - Even though you can run some server-side code on Sandpack, you'll not be able to use very important
+    code libraries. For example, you cannot connect to many database systems.
+
+    I had been thinking about an alternative solution - not use Sandpack and implement a backend system similar to
+    CodeSandbox, using MicroVMs under the hood. However, the cost of maintaining and operating such a system would
+    put a price tag in hundreds of dollars on this course platform. 🥵
+</AuthorNotes>

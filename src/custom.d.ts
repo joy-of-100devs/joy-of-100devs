@@ -8,5 +8,3 @@ declare module "*.svg" {
 declare module "svgdom" {
     export function createSVGWindow(): Window
 }
-
-

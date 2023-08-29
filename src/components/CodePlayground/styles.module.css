@@ -3,12 +3,16 @@
     overflow-hidden
 }
 
+.root {
+    @apply my-8
+}
+
 .innerLayout {
     @apply flex flex-col xl:flex-row  items-stretch
 }
 
 .mainNavigation {
-    @apply flex py-2 px-[8px] bg-background-1
+    @apply flex py-2 px-[12px] bg-background-1 items-center justify-between
 }
 
 .previewNavigation {
@@ -77,7 +81,7 @@
 }
 
 .preview :global(.sp-loading) {
-    @apply absolute w-full h-full top-0 left-0
+    @apply absolute w-full h-full top-0 left-0 bg-background-1
 }
 
 .preview :global(.sp-input) {
@@ -100,3 +104,10 @@
     @apply py-2 px-[px] bg-background-1
 }
 
+.utilityButton {
+    @apply p-[4px] hover:text-accent-4
+}
+
+.utilityButtonIcon {
+    @apply w-4 h-4
+}

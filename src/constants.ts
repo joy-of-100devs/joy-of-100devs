@@ -37,6 +37,6 @@ export const THEME_COLORS: Record<Theme, React.CSSProperties> = {
         '--color-error': "#c23434",
         '--color-warning': "#8f7110",
         '--color-success': "#23862b",
-        '--color-info': "#2685b9",
+        '--color-info': "#20729f",
     } as React.CSSProperties,
 };
