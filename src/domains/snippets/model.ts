@@ -23,7 +23,17 @@ const SnippetSchema = new mongoose.Schema<ISnippet>({
         type: "String",
         required: false,
     },
+    repository: {
+        type: "String",
+        required: true,
+    },
+    filename: {
+        type: "String",
+        required: true,
+    }
 });
 
-const User: mongoose.Model<ISnippet> = mongoose.models[MODEL_NAME] || mongoose.model(MODEL_NAME, SnippetSchema, COLLECTION_NAME);
-export default User;
+SnippetSchema.index({repository: 1, user: 1});
+
+const Snippet: mongoose.Model<ISnippet> = mongoose.models[MODEL_NAME] || mongoose.model(MODEL_NAME, SnippetSchema, COLLECTION_NAME);
+export default Snippet;

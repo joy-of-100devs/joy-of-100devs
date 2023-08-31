@@ -36,7 +36,6 @@ export default function CodePlaygroundEditor() {
                     height="100%"
                     language={codeLanguage}
                     theme={init ? "dark" : "vs-dark"}
-                    key={sandpack.activeFile}
                     value={code}
                     options={{
                         tabSize: 2,

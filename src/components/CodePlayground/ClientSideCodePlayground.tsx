@@ -9,33 +9,45 @@ import {
 import styles from './styles.module.css';
 import CodePlaygroundLayout from "@/components/CodePlayground/CodePlaygroundLayout";
 import {produce} from 'immer';
+import CodePlaygroundPersistentStateProvider from "@/components/CodePlayground/CodePlaygroundPersistentStateProvider";
 
 export interface CodePlaygroundProps {
     template?: SandpackPredefinedTemplate,
     environment?: SandboxEnvironment,
     files: Record<string, SandpackFile>,
+    userFiles: Record<string, string|null>
     dependencies?: Record<string, string>,
     devDependencies?: Record<string, string>,
+    repository: string,
+    initialActiveFile?: string,
 }
 
 function ClientSideCodePlayground(props: CodePlaygroundProps) {
-    // Disable packers on both deps and devDeps to avoid timeout.
-    const deps = produce(props.dependencies ?? {}, draft => {
-        delete draft.vite;
-    });
-    const devDeps = produce(props.dependencies ?? {}, draft => {
-        delete draft.vite;
-    });
+    const actualFiles = React.useMemo(() => {
+        return produce(props.files, (draft) => {
+            for (let [filename, content] of Object.entries(props.userFiles)) {
+                if (content === null) {
+                    delete draft[filename];
+                } else {
+                    draft[filename].code = content;
+                }
+            }
+        })
+    }, [props.files, props.userFiles])
+
+
     return <SandpackProvider
         template={props.template}
-        files={props.files}
+        files={actualFiles}
         customSetup={{
-            dependencies: deps,
-            devDependencies: devDeps,
+            dependencies: props.dependencies,
+            devDependencies: props.devDependencies,
             environment: props.environment,
         }}
         className={styles.root}>
-        <CodePlaygroundLayout></CodePlaygroundLayout>
+        <CodePlaygroundPersistentStateProvider initialActiveFile={props.initialActiveFile} repository={props.repository} originalFiles={props.files}>
+            <CodePlaygroundLayout></CodePlaygroundLayout>
+        </CodePlaygroundPersistentStateProvider>
     </SandpackProvider>;
 }
 

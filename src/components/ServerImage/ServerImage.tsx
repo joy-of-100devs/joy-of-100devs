@@ -22,17 +22,22 @@ function ServerImage(props: ImageProps) {
 }
 
 async function _Image(props: ImageProps) {
-    const asset = await axiosInstance.get<{
-        success: boolean,
-        data: {
-            width: number,
-            height: number,
-            url: string,
-        }
-    }>(props.slug).then(res => res.data)
+    let asset;
+    try {
+        asset = await axiosInstance.get<{
+            success: boolean,
+            data: {
+                width: number,
+                height: number,
+                url: string,
+            }
+        }>(props.slug).then(res => res.data)
+    } catch (e) {
+        throw new Error(`Failure to get file ${props.slug}`)
+    }
 
     return <NextImage src={asset.data.url} width={asset.data.width} height={asset.data.height} alt={props.alt}
-                      className={`${props.className || ''} rounded-[8px] my-4`}></NextImage>;
+                      className={`${props.className || ''} rounded-[8px] mx-auto my-4`}></NextImage>;
 }
 
 

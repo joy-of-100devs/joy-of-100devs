@@ -39,7 +39,7 @@ export default async function Lesson(props: LessonPageProps) {
             </article>
         </div>
         <div className={"flex justify-between items-center"}>
-            <IconButton className={"bg-critical"} icon={BiError}>Report Problem</IconButton>
+            <IconButton className={"bg-error"} icon={BiError}>Report Problem</IconButton>
             <LessonCompletionButton slug={props.params.slug}></LessonCompletionButton>
         </div>
     </>;

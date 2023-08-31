@@ -21,6 +21,12 @@ export const authOptions: NextAuthOptions = {
         }),
     ],
     adapter: adapter,
+    callbacks: {
+        session ({session, user})  {
+            session.user._id = user.id
+            return session;
+        }
+    }
 };
 
 export default NextAuth(authOptions);

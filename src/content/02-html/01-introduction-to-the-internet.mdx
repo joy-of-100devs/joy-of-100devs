@@ -1,0 +1,46 @@
+---
+title: 'Introduction to the Internet'
+publishedOn: 2023-08-19T12:40:00+0700
+---
+
+Welcome to your first actual lesson on this course platform, where you'll learn to build scalable and beautiful web
+applications with the help of HTML, CSS, JS and the MERN stack. 😄
+
+I'm so excited to show you all how everything works in the next 30 weeks! Let's start with something small first - you
+need to get the hang of how websites work first before you can build your first website.
+
+
+## The Internet and Websites
+
+No website can ever exist without the Internet - this giant network of computers is what allows building blocks that makes
+websites to travel to your computer. 🌐
+
+This giant network is very complicated, and there are so many underlying mechanisms that makes the Internet functional.
+For example - HTTP protocol on the application layer, TCP/UDP protocol on the transport layer, IP protocol on the network layer,
+protocols on the link layer like CSMA, the wire/wireless transmission medium, 3 layers of domain name servers, IPv6 to IPv4 tunnelling,
+public IP and routing table, yada, yada.
+
+To be honest, I can't even understand *half* of these concepts when studying Computer Networks. 🥵
+
+So let's abstract it, and let system and network engineers like the folks at Railway, Heroku, or AWS manage the rest for
+you! For all practical intents and purposes of web development, we can treat the Internet as a single
+<ColorEmphasis>**wire**</ColorEmphasis> connecting your computer and another computer.
+
+## How websites appear on your computer
+
+When you are viewing this website, your computer acts as a *client*, while that other computer is a *server* that sends
+this webpage to you in the form of files. This is known in the tech world as the *client-server model*.
+
+{/* TODO: CSS art of the process in action, using framer-motion! */}
+Here's how the process of getting the website to your PC works:
+
+1. First, the client sends a first request to the server.
+2. The server sends an HTML file back to you. The file has to be HTML, otherwise, what appears is no longer a website. It
+defines the structure and content of the current page you're looking at.
+3. After receiving the HTML, the client processes the HTML file and content starts appearing. The HTML document might point
+to more resources like stylesheets (stuff that makes the webpage have an appearance) and scripts (stuff that allows
+you to interact with the page). They need to be fetched from the server.
+4. The server sends more requests to the server to get these resources.
+5. After getting all the extra stuff, our website is complete.
+
+And with the basic understanding of the Internet, let's start building our first Hello World in HTML in the next lesson!

@@ -1,9 +1,11 @@
+"use client";
+
 import * as React from "react";
 import {
     SandpackConsole,
     SandpackFileExplorer,
     SandpackLayout,
-    SandpackPreview, useActiveCode, useSandpack
+    SandpackPreview, useActiveCode
 } from "@codesandbox/sandpack-react/unstyled";
 import styles from "@/components/CodePlayground/styles.module.css";
 import CodePlaygroundEditor from "@/components/CodePlayground/CodePlaygroundEditor";
@@ -11,17 +13,17 @@ import ColorEmphasis from "@/components/ColorEmphasis";
 import {z} from "zod";
 import {capitalize} from "lodash";
 import PlaygroundUtilityButton, {CodeSandboxButton} from "@/components/CodePlayground/PlaygroundUtilityButton";
-import {RxMagicWand, RxOpenInNewWindow, RxReload} from "react-icons/rx";
-import prettier from "prettier/standalone";
+import {RxMagicWand, RxReload} from "react-icons/rx";
 import {useCodeFormatter} from "@/helpers/codePlaygroundHelper";
+import {CodePlaygroundPersistentStateContext} from "@/components/CodePlayground/CodePlaygroundPersistentStateProvider";
 
 const PREVIEW_MODES = z.enum(["browser", "console"]);
 type PreviewMode = z.infer<typeof PREVIEW_MODES>;
 
 export default function CodePlaygroundLayout() {
     const [previewMode, setPreviewMode] = React.useState<PreviewMode>("browser");
+    const {resetCode} = React.useContext(CodePlaygroundPersistentStateContext);
     const {code, updateCode} = useActiveCode();
-    const sandpack = useSandpack();
     const formatCode = useCodeFormatter();
 
     return <SandpackLayout className={styles.layout}>
@@ -33,7 +35,7 @@ export default function CodePlaygroundLayout() {
                     updateCode(newCode, true);
                 }}></PlaygroundUtilityButton>
                 <PlaygroundUtilityButton icon={RxReload} onClick={() => {
-                    sandpack.sandpack.resetAllFiles();
+                    resetCode();
                 }}></PlaygroundUtilityButton>
                 <CodeSandboxButton></CodeSandboxButton>
             </div>
