@@ -3,15 +3,155 @@ title: 'Hello HTML!'
 publishedOn: 2023-08-19T12:40:00+0700
 ---
 
-In this lesson, we'll learn about what HTML is, and then build a Hello World website in HTML together!
-
-
-## What is HTML?
+In this lesson, we'll learn about what HTML is, and then build a page about how to make a homemade pizza in HTML together!
 
 HTML stands for **Hypertext Markup Language**. It's a markup language that makes the content and structure of
 almost every website. On your computer, you can use the extension *.html* to tell HTML files from other files.
 
-Every HTML document can be broken into small blocks called *elements* that tell the browser what to
-display on the user's screen.
+## Anatomy of an HTML element
 
-<CodePlayground repository={"/02/02/hello-html-element-example"}></CodePlayground>
+Every HTML document can be broken into small puzzle pieces called *elements* that tell the browser what to
+display on the user's screen. 🧩
+
+Let's take a look at a few puzzle pieces to understand how HTML elements work!
+
+Most HTML element can usually be dissected into 3 smaller pieces - an opening tag, the content, and its closing tag.
+Hover on each element to reveal what each piece does!
+
+<HTMLElementDemo></HTMLElementDemo>
+
+Besides text, HTML elements can have one or more elements inside of them! Here's an example of a list with its items.
+
+<HTMLElementDemo2></HTMLElementDemo2>
+
+An HTML element can also have attributes - they tell the browser some extra information about the element.
+
+In some cases, these attributes are necessary, or the element won't make sense at all! A decent analogy of this
+is a signpost on the crossroads, and the attributes are where the signpost points too - a signpost without directions is
+utterly useless.
+
+For example, the anchor element <code>a</code> takes the user to another location on the Internet - it can be your own site, or
+another site! The browser *needs* the <code>href</code> attribute to know where it should go.
+
+<HTMLElementDemo3></HTMLElementDemo3>
+
+<AuthorNotes heading={"Good to know!"} variant={"recommendation"}>
+  HTML element names and attributes are case-insensitive. Therefore:
+  - <code>h1</code>, and <code>H1</code> mean the same element, and
+  - <code>LI</code>, <code>li</code>, <code>Li</code> and <code>lI</code> also mean the same element.
+  - <code>href="https://discord.gg/100devs"</code> and <code>HrEf="https://discord.gg/100devs"</code> mean the same
+  attribute.
+
+  However, it's recommended to leave everything in lowercase for better readability!
+</AuthorNotes>
+
+
+## Important HTML elements
+
+Before we make our first recipe page in HTML, we'll have to learn the core elements in HTML first! You'll be actively
+using these elements most of the time when making this page and many, many other pages into the future.
+
+### Headings
+
+A heading serves a simple purpose - it quickly tells the user what the content they're about to read is, and using
+headings breaks content into small chunks that they can understand. 📖
+
+They also help a search engine determine what it's looking at, and a good usage of them is an easy way to help your page
+be more visible on Google. 🔍
+
+There are 6 headings in HTML. <code>h1</code> is the most important heading, describes the content of the whole page,
+and should be used exactly **once**.
+
+<code>h2</code>, <code>h3</code>, <code>h4</code>, <code>h5</code>, and <code>h6</code> always follow
+<code>h1</code> and describe gradually smaller and more specific chunks of content.
+
+
+<CodePlayground repository={"/02/02/hello-html-headings-example"}></CodePlayground>
+
+
+Remember to use the headings in the correct order!
+
+```
+// ✅ Good practice
+h1 > h2 > h3 > h4 > h5 > h6
+h1 > h2 > h3
+h1 > h2 > h3 > h4
+
+// ❌ Bad practice
+h1 > h3 > h4  // Skipped h2
+h1 > h2 > h4 > h5  // Skipped h3
+```
+
+<AuthorNotes variant={"warning"} heading={"Don't pay attention to their sizes!"}>
+  Trying to make the headings bigger or smaller to suit your needs is really bad practice! The only task that HTML does
+  is to define the structure and content of the webpage, not its appearance. We'll learn another markup language that is
+  better suited for this task called CSS in the next module.
+</AuthorNotes>
+
+
+### Paragraphs
+
+Paragraphs are groups of text that goes into detail about the topic that is mentioned in the heading, and they can appear
+after one another. To make a paragraph, you can use the <code>{"<p>"}</code> tag. Here's an example playground:
+
+<CodePlayground repository={"/02/02/hello-html-paragraphs-example"}></CodePlayground>
+
+
+### Containing Elements
+
+Every HTML page can be separated into coherent groups of related HTML elements. Once upon a time, there was no way to
+label these elements except using <code>div</code>s, but the HTML5 specification introduces several elements that help!
+
+
+#### Header
+
+<code>header</code>s are elements that usually lies at the beginning of a webpage, or at the beginning of a section or
+segment of a page.
+
+If the header is right at the beginning of the page, they usually contain the website's logo or trademark, a
+navigation container with links and buttons.
+
+If the header is at the beginning of the section, they can contain its section's heading and other introductory content.
+
+
+#### Footer
+
+<code>footer</code>s are the opposite of footer.
+
+If the footer is right at the end of the page, not only they are used to include links to other parts of
+the website like a header, but they can also include the information of the website's author, some fine print, or some
+links to legalese documents.
+
+Otherwise, the footer can be used to conclude a section or any segment of the page.
+
+#### Navigation
+
+A navigation element contains a bunch of links that take users to different sections of your page. In a news
+website, a navigation section can contain a link to the homepage, several links to popular topics, and sometimes, a link
+to your account settings if the website allows you to log in and bookmark articles. You can create a navigation section
+with a <code>{"<nav>"}</code> tag.
+
+#### Article
+
+An article denotes a piece of share-able content! Use an <code>{"<article>"}</code> tag and wrap around the piece of
+content to make an article element.
+
+What are the places that you can wrap an article tag around? In a news website, these places are... articles. In a
+social media app, they are user posts. In a recipe app, they are a recipe. In a video-sharing app, they can be videos.
+
+#### Section
+
+A <code>{"<section>"}</code> is the most generic, but still semantic way, to group related pieces of content together.
+
+If there's no exact tag that you can think of, yet you still need to meaningfully group a part of your page, go for
+sections!
+
+#### Aside
+
+An aside bar holds stuff that is related to the current piece of content that the user's looking at.
+
+It can be an explanation for a difficult term in an article, or some other pieces of content that are related to
+the current content.
+
+On this platform, I sometimes add Leon's recommendations and my recommendations in green or blue boxes. That's a great
+candidate for an aside element!

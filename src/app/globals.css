@@ -50,6 +50,13 @@ h3 {
     font-weight: 500;
 }
 
+h4 {
+    font-size: 1rem;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    font-weight: 500;
+}
+
 p {
     margin-block: 1em;
 }
@@ -75,6 +82,10 @@ ul, ol {
     @apply pl-6 list-disc my-6
 }
 
+code {
+    @apply bg-background-2 rounded-[0.25rem] p-[2px]
+}
+
 @media (min-width: 35rem) {
     h1 {
         font-size: 2.25rem;
@@ -86,6 +97,10 @@ ul, ol {
 
     h3 {
         font-size: 1.5rem;
+    }
+
+    h4 {
+        font-size: 1.25rem;
     }
 }
 

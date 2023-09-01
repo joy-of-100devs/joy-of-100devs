@@ -14,7 +14,7 @@ function ClientCodeSnippet(props: ClientCodeSnippetProps) {
     const expandable = props.partial;
     const [expanded, setExpanded] = React.useState(!props.partial);
 
-    return <div className={"relative"}>
+    return <div className={"relative block"}>
         {expanded ? props.full : props.partial}
         {expandable && <IconButton className={"absolute top-[8px] right-[8px] focus:bg-background-2 hover:bg-background-2"} onClick={() => {
             setExpanded(state => !state);

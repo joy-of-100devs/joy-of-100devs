@@ -10,10 +10,10 @@ const classNames: Record<AuthorNoteVariant, string> = {
 }
 
 function AuthorNotes(props: { variant: AuthorNoteVariant, heading?: React.ReactNode, children?: React.ReactNode }) {
-    return <div className={`my-12 rounded-[8px] p-[16px] mx-[-16px] bg-opacity-20 ${classNames[props.variant]}`}>
+    return <aside className={`my-12 rounded-[8px] p-[16px] mx-[-16px] bg-opacity-20 ${classNames[props.variant]}`}>
         <h3 className={`text-lg mt-4`}>{props.heading}</h3>
         <div className={''}>{props.children}</div>
-    </div>;
+    </aside>;
 }
 
 export default AuthorNotes;
