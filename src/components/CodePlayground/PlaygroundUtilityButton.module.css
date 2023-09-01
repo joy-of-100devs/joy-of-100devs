@@ -1,0 +1,7 @@
+.utilityButton {
+    @apply p-[4px] hover:text-accent-4
+}
+
+.utilityButtonIcon {
+    @apply w-4 h-4
+}

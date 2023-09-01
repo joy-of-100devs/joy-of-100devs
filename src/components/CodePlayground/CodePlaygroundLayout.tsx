@@ -3,9 +3,8 @@
 import * as React from "react";
 import {
     SandpackConsole,
-    SandpackFileExplorer,
     SandpackLayout,
-    SandpackPreview, useActiveCode, useSandpack
+    SandpackPreview, useActiveCode
 } from "@codesandbox/sandpack-react/unstyled";
 import styles from "@/components/CodePlayground/styles.module.css";
 import CodePlaygroundEditor from "@/components/CodePlayground/CodePlaygroundEditor";
@@ -16,13 +15,12 @@ import PlaygroundUtilityButton, {CodeSandboxButton} from "@/components/CodePlayg
 import {RxMagicWand, RxReload} from "react-icons/rx";
 import {useCodeFormatter} from "@/helpers/codePlaygroundHelper";
 import {CodePlaygroundPersistentStateContext} from "@/components/CodePlayground/CodePlaygroundPersistentStateProvider";
-import {sandpackDark} from "@codesandbox/sandpack-themes";
+import CodePlaygroundExplorer from "@/components/CodePlayground/CodePlaygroundExplorer";
+import CodePlaygroundPreview from "@/components/CodePlayground/CodePlaygroundPreview";
 
-const PREVIEW_MODES = z.enum(["browser", "console"]);
-type PreviewMode = z.infer<typeof PREVIEW_MODES>;
+
 
 export default function CodePlaygroundLayout() {
-    const [previewMode, setPreviewMode] = React.useState<PreviewMode>("browser");
     const {resetCode} = React.useContext(CodePlaygroundPersistentStateContext);
     const {code, updateCode} = useActiveCode();
     const formatCode = useCodeFormatter();
@@ -42,35 +40,10 @@ export default function CodePlaygroundLayout() {
             </div>
         </div>
         <div className={styles.innerLayout}>
-            <SandpackFileExplorer className={styles.fileExplorer} autoHiddenFiles={true}></SandpackFileExplorer>
+            <CodePlaygroundExplorer layoutVariant={"horizontal"}></CodePlaygroundExplorer>
             <CodePlaygroundEditor></CodePlaygroundEditor>
-            <div className={styles.preview}>
-                <PreviewModeSwitcher mode={previewMode} switchMode={setPreviewMode}></PreviewModeSwitcher>
-                <SandpackPreview
-                    showNavigator={true}
-                    showSandpackErrorOverlay={false}
-                    showOpenInCodeSandbox={false}
-                    showRefreshButton={false}
-                    className={previewMode === "browser" ? "flex" : "hidden"}
-                ></SandpackPreview>
-                <SandpackConsole
-                    className={`${previewMode === "console" ? "flex" : "hidden"} ${styles.console}`}
-                ></SandpackConsole>
-            </div>
+            <CodePlaygroundPreview></CodePlaygroundPreview>
         </div>
     </SandpackLayout>;
 }
 
-interface PreviewModeSwitcherProps {
-    mode: PreviewMode, switchMode: (newMode: PreviewMode) => void,
-}
-
-function PreviewModeSwitcher(props: PreviewModeSwitcherProps) {
-    return <nav className={styles.previewNavigation}>
-        {PREVIEW_MODES._def.values.map(mode => {
-            return <button
-                className={`${mode === props.mode ? "text-accent-4" : "text-primary"} p-[4px] `}
-                onClick={() => {props.switchMode(mode)}} key={mode}>{capitalize(mode)}</button>
-        })}
-    </nav>
-}

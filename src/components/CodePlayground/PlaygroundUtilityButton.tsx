@@ -1,5 +1,5 @@
-import IconButton, {IconButtonProps, IconLink, IconLinkProps} from "@/components/IconButton/IconButton";
-import styles from "@/components/CodePlayground/styles.module.css";
+import IconButton, {IconButtonProps} from "@/components/IconButton/IconButton";
+import styles from "@/components/CodePlayground/PlaygroundUtilityButton.module.css";
 import * as React from "react";
 import {UnstyledOpenInCodeSandboxButton} from "@codesandbox/sandpack-react/unstyled";
 import {RxOpenInNewWindow} from "react-icons/rx";

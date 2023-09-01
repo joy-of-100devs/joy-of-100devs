@@ -1,9 +1,9 @@
-import {SandpackFileExplorer, SandpackStack, useActiveCode, useSandpack} from "@codesandbox/sandpack-react/unstyled";
+import {SandpackStack, useActiveCode, useSandpack} from "@codesandbox/sandpack-react/unstyled";
 import {Editor, useMonaco} from "@monaco-editor/react";
 import * as React from "react";
-import styles from "@/components/CodePlayground/styles.module.css";
+import styles from "@/components/CodePlayground/CodePlaygroundEditor.module.css";
 import {useCodeLanguage} from "@/helpers/codePlaygroundHelper";
-import {SandpackCodeEditor} from "@codesandbox/sandpack-react/unstyled";
+import CodePlaygroundExplorer from "@/components/CodePlayground/CodePlaygroundExplorer";
 
 
 export default function CodePlaygroundEditor() {
@@ -28,11 +28,9 @@ export default function CodePlaygroundEditor() {
 
     return (
         <SandpackStack className={styles.editor}>
-            <SandpackFileExplorer className={`${styles.fileExplorer} ${styles.miniFileExplorer}`}
-                                  autoHiddenFiles={true}></SandpackFileExplorer>
+            <CodePlaygroundExplorer layoutVariant={"vertical"}></CodePlaygroundExplorer>
             <div className={styles.editorOuter}>
                 <Editor
-                    className={styles.editorInner}
                     width="100%"
                     height="100%"
                     language={codeLanguage}
