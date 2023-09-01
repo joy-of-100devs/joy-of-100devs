@@ -3,11 +3,11 @@ import {Editor, useMonaco} from "@monaco-editor/react";
 import * as React from "react";
 import styles from "@/components/CodePlayground/styles.module.css";
 import {useCodeLanguage} from "@/helpers/codePlaygroundHelper";
-
+import {SandpackCodeEditor} from "@codesandbox/sandpack-react/unstyled";
 
 
 export default function CodePlaygroundEditor() {
-    const {code, updateCode} = useActiveCode();
+    const {code, updateCode, readOnly} = useActiveCode();
     const {sandpack} = useSandpack();
     const monaco = useMonaco();
     const [init, setInit] = React.useState(false);
@@ -28,16 +28,19 @@ export default function CodePlaygroundEditor() {
 
     return (
         <SandpackStack className={styles.editor}>
-            <SandpackFileExplorer className={`${styles.fileExplorer} ${styles.miniFileExplorer}`}></SandpackFileExplorer>
+            <SandpackFileExplorer className={`${styles.fileExplorer} ${styles.miniFileExplorer}`}
+                                  autoHiddenFiles={true}></SandpackFileExplorer>
             <div className={styles.editorOuter}>
                 <Editor
                     className={styles.editorInner}
                     width="100%"
                     height="100%"
                     language={codeLanguage}
+                    key={sandpack.activeFile}
                     theme={init ? "dark" : "vs-dark"}
                     value={code}
                     options={{
+                        readOnly: readOnly,
                         tabSize: 2,
                         scrollBeyondLastLine: false,
                         minimap: {
@@ -46,7 +49,9 @@ export default function CodePlaygroundEditor() {
                         wordWrap: "on",
                         renderLineHighlight: "none",
                     }}
-                    onChange={(value) => updateCode(value || "")}
+                    onChange={(value) => {
+                        updateCode(value || "");
+                    }}
                 />
             </div>
         </SandpackStack>

@@ -8,7 +8,8 @@ import {SandpackBundlerFile} from "@codesandbox/sandpack-client";
 export const CodePlaygroundPersistentStateContext = React.createContext<{
     resetCode: () => void
 }>({
-    resetCode() {}
+    resetCode() {
+    }
 });
 
 export default function CodePlaygroundPersistentStateProvider(props: {
@@ -33,7 +34,7 @@ export default function CodePlaygroundPersistentStateProvider(props: {
 
         return () => {
             unsubscribe();
-        }
+        };
     }, []);
 
     const resetCode = React.useCallback(() => {
@@ -61,6 +62,7 @@ export default function CodePlaygroundPersistentStateProvider(props: {
     // Modifying or creating code.
     useUpdateEffect(() => {
         if (!initialized) return;
+
         async function autoSave() {
             await axios.put("/api/snippets", {
                 repository: repository,
@@ -76,7 +78,7 @@ export default function CodePlaygroundPersistentStateProvider(props: {
         return () => {
             clearTimeout(timeout);
             autoSave().then();
-        }
+        };
     }, [initialized, activeFile, state.files[activeFile], repository]);
 
     return <CodePlaygroundPersistentStateContext.Provider value={useMemoizedObject({resetCode})}>

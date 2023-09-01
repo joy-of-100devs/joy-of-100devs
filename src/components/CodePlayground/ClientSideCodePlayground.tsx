@@ -3,9 +3,10 @@
 import * as React from 'react';
 import {
     SandboxEnvironment,
-    SandpackFile, SandpackPredefinedTemplate,
-    SandpackProvider,
+    SandpackFile, SandpackFileExplorer, SandpackPredefinedTemplate,
+    SandpackProvider, useSandpack,
 } from "@codesandbox/sandpack-react/unstyled";
+import {Sandpack} from "@codesandbox/sandpack-react";
 import styles from './styles.module.css';
 import CodePlaygroundLayout from "@/components/CodePlayground/CodePlaygroundLayout";
 import {produce} from 'immer';
@@ -15,7 +16,7 @@ export interface CodePlaygroundProps {
     template?: SandpackPredefinedTemplate,
     environment?: SandboxEnvironment,
     files: Record<string, SandpackFile>,
-    userFiles: Record<string, string|null>
+    userFiles: Record<string, string | null>
     dependencies?: Record<string, string>,
     devDependencies?: Record<string, string>,
     repository: string,
@@ -29,12 +30,14 @@ function ClientSideCodePlayground(props: CodePlaygroundProps) {
                 if (content === null) {
                     delete draft[filename];
                 } else {
-                    draft[filename].code = content;
+                    draft[filename] = {
+                        ...draft[filename],
+                        code: content,
+                    };
                 }
             }
-        })
-    }, [props.files, props.userFiles])
-
+        });
+    }, [props.files, props.userFiles]);
 
     return <SandpackProvider
         template={props.template}
@@ -45,10 +48,19 @@ function ClientSideCodePlayground(props: CodePlaygroundProps) {
             environment: props.environment,
         }}
         className={styles.root}>
-        <CodePlaygroundPersistentStateProvider initialActiveFile={props.initialActiveFile} repository={props.repository} originalFiles={props.files}>
+        <CodePlaygroundPersistentStateProvider
+            initialActiveFile={props.initialActiveFile}
+            repository={props.repository}
+            originalFiles={props.files}>
             <CodePlaygroundLayout></CodePlaygroundLayout>
         </CodePlaygroundPersistentStateProvider>
     </SandpackProvider>;
+}
+
+function TestComponent() {
+    const sandpack = useSandpack();
+    console.log("SANDPACK INSTANCE", sandpack.sandpack.files);
+    return null;
 }
 
 export default ClientSideCodePlayground;

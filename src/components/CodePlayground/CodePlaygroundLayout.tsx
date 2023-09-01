@@ -5,7 +5,7 @@ import {
     SandpackConsole,
     SandpackFileExplorer,
     SandpackLayout,
-    SandpackPreview, useActiveCode
+    SandpackPreview, useActiveCode, useSandpack
 } from "@codesandbox/sandpack-react/unstyled";
 import styles from "@/components/CodePlayground/styles.module.css";
 import CodePlaygroundEditor from "@/components/CodePlayground/CodePlaygroundEditor";
@@ -16,6 +16,7 @@ import PlaygroundUtilityButton, {CodeSandboxButton} from "@/components/CodePlayg
 import {RxMagicWand, RxReload} from "react-icons/rx";
 import {useCodeFormatter} from "@/helpers/codePlaygroundHelper";
 import {CodePlaygroundPersistentStateContext} from "@/components/CodePlayground/CodePlaygroundPersistentStateProvider";
+import {sandpackDark} from "@codesandbox/sandpack-themes";
 
 const PREVIEW_MODES = z.enum(["browser", "console"]);
 type PreviewMode = z.infer<typeof PREVIEW_MODES>;
@@ -41,7 +42,7 @@ export default function CodePlaygroundLayout() {
             </div>
         </div>
         <div className={styles.innerLayout}>
-            <SandpackFileExplorer className={styles.fileExplorer}></SandpackFileExplorer>
+            <SandpackFileExplorer className={styles.fileExplorer} autoHiddenFiles={true}></SandpackFileExplorer>
             <CodePlaygroundEditor></CodePlaygroundEditor>
             <div className={styles.preview}>
                 <PreviewModeSwitcher mode={previewMode} switchMode={setPreviewMode}></PreviewModeSwitcher>
