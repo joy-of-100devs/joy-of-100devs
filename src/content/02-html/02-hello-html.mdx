@@ -16,7 +16,8 @@ display on the user's screen. 🧩
 Let's take a look at a few puzzle pieces to understand how HTML elements work!
 
 Most HTML element can usually be dissected into 3 smaller pieces - an opening tag, the content, and its closing tag.
-Hover on each element to reveal what each piece does!
+Hover on each element to reveal what each piece does! Note that throughout this course, I'll use the term *tag* and
+*element* interchangeably.
 
 <HTMLElementDemo></HTMLElementDemo>
 
@@ -82,26 +83,46 @@ h1 > h3 > h4  // Skipped h2
 h1 > h2 > h4 > h5  // Skipped h3
 ```
 
-<AuthorNotes variant={"warning"} heading={"Don't pay attention to their sizes!"}>
-  Trying to make the headings bigger or smaller to suit your needs is really bad practice! The only task that HTML does
-  is to define the structure and content of the webpage, not its appearance. We'll learn another markup language that is
-  better suited for this task called CSS in the next module.
-</AuthorNotes>
-
-
-### Paragraphs
+### Paragraphs and Text Elements
 
 Paragraphs are groups of text that goes into detail about the topic that is mentioned in the heading, and they can appear
 after one another. To make a paragraph, you can use the <code>{"<p>"}</code> tag. Here's an example playground:
 
 <CodePlayground repository={"/02/02/hello-html-paragraphs-example"}></CodePlayground>
 
+For shorter pieces of text, you can use a <code>{"<span>"}</code> element as a generic option, but in some situations, other
+elements work better!
+
+- A <code>{"<time>"}</code> tag is best used for a specific time or date. A human-readable time should be added as the
+<code>time</code> element's content, while a machine-readable format should be added as the value of the
+<code>datetime</code> attribute, so that search engines can make sense of it, for example, to know when your page is
+created! You'll learn how you can generate a standard time format when we get to the JavaScript module.
+
+- A <code>{"<small>"}</code> tag is best used for the fine print of the document, like the license or brief description of
+your website's copyright.
+
+- Use <code>{"<code>"}</code> tag around pieces and snippets of code.
+
+- A <code>{"<sub>"}</code> tag defines subscript text, which appear in chemical formulas like H<sub>2</sub>O.
+
+- A <code>{"<sup>"}</code> tag defines superscript text, which appear in algebraic expressions like x<sup>2</sup>.
+
+- A <code>{"<del>"}</code> tag can be used if a part of content that is out-of-date, but you still want to keep it in
+your page.
+
+- Use an <code>{"<ins>"}</code> tag if you go back to your page and want to add some new content to it.
+
+- The <code>{"<strong>"}</code> element marks a piece of text as important.
+
+- Use an <code>{"<em>"}</code> tag if you want to emphasize a piece of text.
+
+<CodePlayground repository={"/02/02/hello-html-text-elements-example"}></CodePlayground>
+
 
 ### Containing Elements
 
 Every HTML page can be separated into coherent groups of related HTML elements. Once upon a time, there was no way to
 label these elements except using <code>div</code>s, but the HTML5 specification introduces several elements that help!
-
 
 #### Header
 
@@ -139,6 +160,16 @@ content to make an article element.
 What are the places that you can wrap an article tag around? In a news website, these places are... articles. In a
 social media app, they are user posts. In a recipe app, they are a recipe. In a video-sharing app, they can be videos.
 
+#### Aside
+
+An aside bar holds stuff that is related to the current piece of content that the user's looking at.
+
+It can be an explanation for a difficult term in an article, or some other pieces of content that are related to
+the current content - it does not need to be to the left or right of the main content.
+
+On this platform, I sometimes add Leon's recommendations and my recommendations in green or blue boxes. That's a great
+candidate for an aside element!
+
 #### Section
 
 A <code>{"<section>"}</code> is the most generic, but still semantic way, to group related pieces of content together.
@@ -146,12 +177,109 @@ A <code>{"<section>"}</code> is the most generic, but still semantic way, to gro
 If there's no exact tag that you can think of, yet you still need to meaningfully group a part of your page, go for
 sections!
 
-#### Aside
+#### Divisors
 
-An aside bar holds stuff that is related to the current piece of content that the user's looking at.
+If you want to group elements together only for the sake of layout or styling, and you've already added a semantic
+container, then using divisors is a good idea! A divisor can be defined by a pair of <code>{"<div>"}</code> tags.
 
-It can be an explanation for a difficult term in an article, or some other pieces of content that are related to
-the current content.
+You will not need to use any divisors in this module though as you don't need to style stuff yet.
 
-On this platform, I sometimes add Leon's recommendations and my recommendations in green or blue boxes. That's a great
-candidate for an aside element!
+
+### Images
+
+A picture is worth a thousand words! You can add images to help with conveying information to folks who read your page.
+
+The syntax of an image is unique - unlike most elements, you'll not need a closing tag at all. Putting content inside
+an image tag doesn't make sense either. There are a few more elements that share this behavior called *void elements*.
+
+An image needs 2 attributes:
+- An <code>src</code> attribute telling the browser where the image is on the Internet. It can be on another webpage,
+or a place on your own server.
+- An <code>alt</code> attribute tells the user what the image is if the user can't see the image for any reason, like
+the user's visual disabilities, or the image is not found or fails to load.
+
+```html
+<img src="https://images.dog.ceo/breeds/mix/IMG_2840.jpg" alt="A picture of a dog">
+```
+
+To improve your image's semantics, you can combine a <code>figure</code> and <code>figcaption</code>! Unlike the alt
+attribute, sighted users can see what's in the <code>figcaption</code>.
+
+```html
+<figure>
+    <img src="https://images.dog.ceo/breeds/mix/IMG_2840.jpg" alt="A picture of a dog">
+    <figcaption>A picture of a cute white puppy</figcaption>
+</figure>
+```
+
+Feel free to play with the image elements in this playground! Don't worry if the images look too large, we'll learn how
+to make them fit the page later with CSS. 😅
+
+<CodePlayground repository={"/02/02/hello-html-images-example"}></CodePlayground>
+
+<AuthorNotes variant={"warning"} heading={"External images"}>
+  Don't forget to check if you're allowed to use an image from the Internet! They might be copyrighted.
+
+  In addition, avoid using images from external websites that you don't own, their contents can be changed or removed,
+  leaving you and your users with a very bad site.
+
+  For the next exercise only, you will practice with external, open-source images. Right after that, you'll learn how to
+  link images from your own development server.
+</AuthorNotes>
+
+### Anchors
+
+An anchor element takes the user to another page on the Interwebz!
+
+You can specify a location with the <code>href</code> attribute like this.
+
+```html
+<a href="https://dog.ceo">dog.ceo website</a>
+```
+
+An anchor tag can also link to another page on your own website, but we'll learn how later in this module.
+
+You can also opt to open the webpage in a new tab using the <code>target</code> attribtute.
+
+```html
+<a href="https://dog.ceo" target="_blank">this link opens in a new tab</a>
+```
+
+Here's a playground that you can tinker with!
+
+<CodePlayground repository={"02/02/hello-html-anchors-example"}/>
+
+### Lists
+
+Last category of elements today, I promise! 😅
+
+There are 2 kinds of lists:
+- unordered lists (defined by an <code>ul</code> element)
+- ordered lists (defined by an <code>ol</code> element).
+
+The restaurant-themed equivalents would be a menu of ingredients and a set of instructions for a dish. Let's look at an
+example pizza recipe! 🧑‍🍳
+
+Note that list items, defined by a pair of <code>{"<li>"}</code> tags, are the only elements allowed inside
+the list elements.
+
+<CodePlayground repository={"02/02/hello-html-lists-example"}/>
+
+<AuthorNotes variant={"recommendation"} heading={"Good to know"}>
+  An ordered lists has a few optional attributes that can help you!
+
+  * The <code>reversed</code> attribute helps you reverse a list. You can use this to rank top 10 favourite movies from
+  worst or best, for example. You don't need to include any value for this to work!
+  * The <code>start</code> attribute helps you start the list from a higher number.
+  * You can customize the list marker with the <code>type</code> attribute - you can swap the default marker with
+  <code>i</code> or <code>I</code> (Roman numerals), <code>a</code> or <code>A</code> (alphabets), and <code>1</code>,
+
+</AuthorNotes>
+
+
+<AuthorNotes variant={"warning"} heading={"Don't pay attention to their appearance!"}>
+  Trying to make the headings bigger or smaller, or make your text bold or light using HTML is not a good practice!
+
+  The only task that HTML does is to define the structure and content of the webpage, not its appearance. We'll learn
+  another markup language that is better suited for this task called CSS in the next module.
+</AuthorNotes>

@@ -16,12 +16,12 @@ function CodeSnippet({...props}: ComponentProps<"code">) {
     }
 
     const partialString = props.children.split("\n").slice(0, 20).join("\n");
-    const fullElement = <Code {...actualProps} lang={detectedLang} theme={"dracula"} className={`${styles.snippet} ${props.className || ""}`}></Code>
+    const fullElement = <Code {...actualProps} lang={detectedLang} theme={"dracula"} className={`${styles.snippet} ${props.className || ""}`}>{props.children.trim()}</Code>
 
     if (partialString === props.children) {
         return <ClientCodeSnippet full={fullElement}/>
     } else {
-        const partialElement = <Code {...actualProps} lang={detectedLang} theme={"dracula"} className={`${styles.snippet} ${props.className || ""}}`}>{partialString}</Code>
+        const partialElement = <Code {...actualProps} lang={detectedLang} theme={"dracula"} className={`${styles.snippet} ${props.className || ""}}`}>{partialString.trim()}</Code>
         return <ClientCodeSnippet partial={partialElement} full={fullElement}/>
     }
 }
