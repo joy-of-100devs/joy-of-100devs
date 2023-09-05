@@ -9,6 +9,7 @@ import CodePlayground from "@/components/CodePlayground";
 import HTMLElementDemo from "@/components/HTMLElementDemo";
 import HTMLElementDemo2 from "@/components/HTMLElementDemo2";
 import HTMLElementDemo3 from "@/components/HTMLElementDemo3";
+import PathSimulator from "@/components/PathSimulator";
 
 const COMPONENT_MAP = {
     ColorEmphasis: ColorEmphasis,
@@ -28,7 +29,7 @@ const COMPONENT_MAP = {
     HTMLElementDemo: HTMLElementDemo,
     HTMLElementDemo2: HTMLElementDemo2,
     HTMLElementDemo3: HTMLElementDemo3,
-
+    PathSimulator: PathSimulator,
 };
 
 function CustomMDXRemote({source}: { source: string }) {

@@ -101,6 +101,8 @@ created! You'll learn how you can generate a standard time format when we get to
 - A <code>{"<small>"}</code> tag is best used for the fine print of the document, like the license or brief description of
 your website's copyright.
 
+- An <code>{"<article>"}</code> tag represents information about the author that create the piece of content.
+
 - Use <code>{"<code>"}</code> tag around pieces and snippets of code.
 
 - A <code>{"<sub>"}</code> tag defines subscript text, which appear in chemical formulas like H<sub>2</sub>O.
@@ -152,6 +154,9 @@ website, a navigation section can contain a link to the homepage, several links 
 to your account settings if the website allows you to log in and bookmark articles. You can create a navigation section
 with a <code>{"<nav>"}</code> tag.
 
+There's one hidden feature of the navigation container - the search engine will not check anything that is inside the
+nav tag to avoid counting the repeated navigation links multiple times.
+
 #### Article
 
 An article denotes a piece of share-able content! Use an <code>{"<article>"}</code> tag and wrap around the piece of
@@ -176,6 +181,11 @@ A <code>{"<section>"}</code> is the most generic, but still semantic way, to gro
 
 If there's no exact tag that you can think of, yet you still need to meaningfully group a part of your page, go for
 sections!
+
+#### Main
+
+A <code>{"<main>"}</code> element should wrap around the dominant content of the webpage, and there should only be one
+per page. For example, an ordinary page of a news website should wrap around the article.
 
 #### Divisors
 
@@ -203,7 +213,8 @@ the user's visual disabilities, or the image is not found or fails to load.
 ```
 
 To improve your image's semantics, you can combine a <code>figure</code> and <code>figcaption</code>! Unlike the alt
-attribute, sighted users can see what's in the <code>figcaption</code>.
+attribute, sighted users can see what's in the <code>figcaption</code>. A <code>figcaption</code> can also tell users
+about the original author of the photo.
 
 ```html
 <figure>
@@ -277,9 +288,13 @@ the list elements.
 </AuthorNotes>
 
 
-<AuthorNotes variant={"warning"} heading={"Don't pay attention to their appearance!"}>
-  Trying to make the headings bigger or smaller, or make your text bold or light using HTML is not a good practice!
+[//]: # (<AuthorNotes variant={"warning"} heading={"Don't pay attention to their appearance!"}>)
 
-  The only task that HTML does is to define the structure and content of the webpage, not its appearance. We'll learn
-  another markup language that is better suited for this task called CSS in the next module.
-</AuthorNotes>
+[//]: # (  Trying to make the headings bigger or smaller, or make your text bold or light using HTML is not a good practice!)
+
+[//]: # ()
+[//]: # (  The only task that HTML does is to define the structure and content of the webpage, not its appearance. We'll learn)
+
+[//]: # (  another markup language that is better suited for this task called CSS in the next module.)
+
+[//]: # (</AuthorNotes>)

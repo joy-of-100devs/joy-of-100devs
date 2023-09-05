@@ -28,6 +28,7 @@ export namespace SandpackRepository {
         environment?: SandboxEnvironment;
         initialActiveFile?: string;
         files?: Record<string, SandpackFileConfig>;
+        externalResources?: string[];
     }
 
     export interface SandpackPackageData {
@@ -70,6 +71,7 @@ export default async function CodePlayground(props: CodePlaygroundProps) {
         template={data.package.sandpack?.template}
         files={data.files}
         userFiles={savedFiles}
+        externalResources={data.package.sandpack?.externalResources}
         dependencies={data.package.dependencies}
         devDependencies={data.package.devDependencies}
         environment={data.package.sandpack?.environment}></ClientSideCodePlayground>;

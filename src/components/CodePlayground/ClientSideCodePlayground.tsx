@@ -21,6 +21,7 @@ export interface CodePlaygroundProps {
     devDependencies?: Record<string, string>,
     repository: string,
     initialActiveFile?: string,
+    externalResources?: string[]
 }
 
 function ClientSideCodePlayground(props: CodePlaygroundProps) {
@@ -42,6 +43,9 @@ function ClientSideCodePlayground(props: CodePlaygroundProps) {
     return <SandpackProvider
         template={props.template}
         files={actualFiles}
+        options={{
+            externalResources: props.externalResources
+        }}
         customSetup={{
             dependencies: props.dependencies,
             devDependencies: props.devDependencies,

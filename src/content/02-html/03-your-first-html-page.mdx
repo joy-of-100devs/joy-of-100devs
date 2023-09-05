@@ -1,0 +1,261 @@
+---
+title: 'Your First HTML Page'
+publishedOn: 2023-08-19T12:40:00+0700
+---
+
+Who likes strawberry ice cream? In this lesson, let's build a recipe page for this tasty treat using all HTML building
+blocks you've learned so far. 🍦
+
+{/* TODO: Actually make a custom webpage about the ice cream recipe - there might be copyright issues. */}
+
+## Before you begin
+
+There are a few things that you need to know about this exercise:
+
+- This exercise is only intended to help you practice assembling HTML like putting together LEGO bricks! We haven't
+learned the standard structure of an HTML document yet - which we will learn soon in a few more modules. 🧱
+- Your HTML page isn't supposed to be beautiful or neatly laid out yet, and you should never use HTML elements based on
+how big or small the element is! This job should be dedicated to CSS, which we'll learn later. This philosophy is called the
+<ColorEmphasis>*separation of concerns*</ColorEmphasis>. In this exercise, I added a stylesheet called
+<code>reset.css</code> to make every element look the same - this should hammer the point home. 📃
+- After looking at the solution, I recommend you to play with the code and break stuff.
+
+
+Without further ado, let's start working on making your first web page!
+
+In case you don't know how to make ice cream like me, you can use one of these <ColorEmphasis color={"#ff7777"}>reference recipes</ColorEmphasis>
+to help you. Click on each item to open the respective recipe!
+
+- <a href="https://www.allrecipes.com/recipe/140877/easy-eggless-strawberry-ice-cream/">Recipe from allrecipes.com</a>
+- <a href="https://www.bbcgoodfood.com/recipes/strawberry-ice-cream/">Recipe from bbcgoodfood.com</a>
+- <a href="https://www.alattefood.com/homemade-strawberry-ice-cream/">Recipe from alattefood.com</a>
+
+
+## Acceptance Criteria
+
+- The recipe page is for a hypothetical website called <code>https://recipes.example.com</code>
+- There should be a header containing a clickable logo, some navigation links to different categories of dishes.
+For now, you can use external links like <code>{"https://recipes.example.com/categories/dessert"}</code>.
+We'll learn how to use internal links soon!
+- There should be one primary heading that names the recipe and an image of the finished dessert with caption.
+- You should include some information about the author of the recipe.
+- There should be one main element and an article wrapping around the recipe.
+- There should be one section that describes the necessary ingredients for the recipe and one section that contains the
+recipe's instructions. Use lists whenever appropriate!
+- You should use paragraphs for text content.
+
+[//]  # (TODO: This part needs images, but I don't have a lot of images, and I can't read the legalese. In the worst
+case, I'll have to draw them ALL out)
+[//]  # (- There should be images with alt tags that accompany every step of the instruction, and every image should be)
+[//]  # (captioned with the original author of the image.)
+- There should be an aside tag containing related recipes.
+- You don't need to include user ratings or reviews for this exercise.
+- At the end of the page, there should be a footer with some navigation links to the recipe categories (same as in the
+page header) and some links to the recipe website's legal documents like <code>{"https://recipes.example.com/terms"}</code>
+or <code>{"https://recipes.example.com/privacy"}</code>.
+
+<CodePlayground repository={"/02/03/exercise"}></CodePlayground>
+
+
+## Solution
+
+How did you feel about this first exercise? It's meant to be hard.
+
+It's OK even if your markup doesn't align well with the solution, you've still learned and grown a lot! After all, every
+one of us has been a code baddie and has written bad code, at least at some point. 🌱
+
+If you look at the images in the playground, many of them don't actually work. This is because in many cases, it's very
+hard to find a proper non-copyrighted image, and I replaced with links from an example website that doesn't exist. I'll
+try to gather proper images soon!
+
+First, let's make the header of the file. The structure should be like this. Note that the <code>nav</code> >
+<code>ul</code> > <code>li</code> > <code>a</code> is quite a common pattern:
+
+```html
+<header>
+  <a href="https://recipes.example.com">
+    <img alt="Website Logo" src="https://recipes.example.com/static/logo.png"/>
+  </a>
+  <nav>
+    <ul>
+      <li><a href="https://recipes.example.com/breakfasts">Breakfasts</a></li>
+      <li><a href="https://recipes.example.com/lunches">Lunches</a></li>
+      <li><a href="https://recipes.example.com/dinners">Dinners</a></li>
+      <li><a href="https://recipes.example.com/occasions">Occasions</a></li>
+      <li><a href="https://recipes.example.com/appetizers">Appetizers</a></li>
+      <li><a href="https://recipes.example.com/main-courses">Main courses</a></li>
+      <li><a href="https://recipes.example.com/desserts">Desserts</a></li>
+    </ul>
+  </nav>
+</header>
+```
+
+Now let's proceed to the primary content of the page! The outer wrapper should be a <code>main</code> container, and the
+content should be split into 2 parts - an <code>article</code> containing the ice cream recipe
+and a <code>aside</code> element containing related recipes.
+
+```html
+<main>
+  <article></article>
+  <aside></aside>
+</main>
+```
+
+Inside the <code>article</code> element, let's insert a heading, the author information, article publish date,
+and an image of the finished ice cream from Unsplash and put these items into a header element.
+
+```html
+<article>
+  <header>
+    <h1>Strawberry Ice Cream</h1>
+    <address>By Johnny Appleseed</address>
+    <p>Updated on <time>May 6, 2023</time></p>
+    <p>Here's a super easy way to make a tasty ice cream.</p>
+    <figure>
+      <img src="https://images.unsplash.com/photo-1633933358116-a27b902fad35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80" alt="Finished strawberry ice cream">
+      <figcaption>Here's what a finished strawberry ice cream will look like!</figcaption>
+    </figure>
+  </header>
+</article>
+```
+
+Right after that, insert another section about the recipe's ingredients below it! The heading should be h2 - because
+it is a child of the heading containing the recipe name.
+
+Optionally, you can add <code>strong</code> elements to highlight the keyword!
+
+```html
+<article>
+  <!-- ...previous content here -->
+  <section>
+    <h2>Ingredients</h2>
+    <ul>
+      <li>Strawberries</li>
+      <li>Whole milk</li>
+      <li>Double cream or heavy cream</li>
+      <li>White sugar</li>
+      <li>A little vanilla extract and salt</li>
+      <li>Lemon juice (optional)</li>
+      <li>Egg yolk (optional)</li>
+    </ul>
+  </section>
+</article>
+```
+
+<AuthorNotes heading={"HTML comments"} variant={"recommendation"}>
+  An HTML comment can be used to explain the content below it, create a reminder of what to do to improve the content,
+  or signal something else entirely to other developers! Only developers will be able to see it - the comment will be
+  hidden from your users.
+
+  An HTML comment starts with the sequence <code>{"<!--"}</code> - a less-than sign, an exclamation mark, and 2 hyphens,
+  and ends with <code>{"-->"}</code>- 2 hyphens followed by a greater than sign!
+
+  This is an example of a comment:
+  ```html
+  <!-- ...previous content here -->
+  ```
+</AuthorNotes>
+
+Next step, let's add a section of instructions for making the ice cream! For this section, you should organize steps
+into an ordered list. You should also add multiple paragraphs to organize an item better.
+
+```html
+<article>
+  <!-- ...previous content here -->
+  <section>
+    <h2>Instructions</h2>
+    <ol>
+      <li>
+        <p>Gather all ingredients.</p>
+      </li>
+      <li>
+        <p>Use a blender to turn strawberries into strawberry purée.</p>
+        <p>If you want to make the ice cream a bit more tart, you can add a few teaspoons of lemon juice.</p>
+      </li>
+      <li>
+        <p>If you want ice cream without egg yolks, simply mix everything together and put the mixture into an ice cream
+          maker. Otherwise, you can continue with the next steps.</p>
+      </li>
+      <li>
+        <p>Warm the cream and milk in a pan until steaming.</p>
+      </li>
+      <li>
+        <p>Whisk the sugar and egg yolks for several minutes until the mixture turns yellow.</p>
+      </li>
+      <li>
+        <p>Slowly pour the hot cream and milk mixture into the pale yellow egg mixture while continuously whisking the
+            contents inside the egg bowl.</p>
+      </li>
+      <li>
+        <p>Pour the content back into the pan. Use a sieve to filter big particles in the process.</p>
+      </li>
+      <li>
+        <p>Cook the content over low-medium heat until it slightly thickens.</p>
+      </li>
+      <li>
+        <p>Pour the cooked mixture onto the bowl, leave it cool for 10 minutes and inside the refrigerator for an hour.</p>
+      </li>
+      <li>
+        <p>Stir everything together then freeze everything in an ice cream maker.</p>
+      </li>
+    </ol>
+  </section>
+</article>
+```
+
+We'll proceed with adding related recipes to the already-existing <code>aside</code> element!
+This is where you can add related recipes. For the heading, since we've already had an <code>h1</code> in the page, we'll
+use an <code>h2</code> this time.
+
+```html
+<aside>
+  <h2>Related Recipes</h2>
+  <ul>
+    <li>
+      <a href="https://recipes.example.com/recipes/strawberry-cake">Strawberry Cake</a>
+    </li>
+    <li>
+      <a href="https://recipes.example.com/recipes/chocolate-ice-cream">Chocolate Ice Cream</a>
+    </li>
+    <li>
+      <a href="https://recipes.example.com/recipes/strawberry-pudding">Strawberry Pudding</a>
+    </li>
+    <li>
+      <a href="https://recipes.example.com/recipes/banana-macaroons">Banana Macaroons</a>
+    </li>
+  </ul>
+</aside>
+```
+
+Let's end with a page footer! You should wrap a <code>small</code> element around the copyright, and everything else
+should be similar to the header at the top!
+
+```html
+<footer>
+  <a href="https://recipes.example.com">
+    <img alt="Website Logo" src="https://recipes.example.com/static/logo.png"/>
+  </a>
+  <small>Copyright © 2023 Johnny Appleseed. All rights reserved.</small>
+  <nav>
+    <ul>
+      <li><a href="https://recipes.example.com/breakfasts">Breakfasts</a></li>
+      <li><a href="https://recipes.example.com/lunches">Lunches</a></li>
+      <li><a href="https://recipes.example.com/dinners">Dinners</a></li>
+      <li><a href="https://recipes.example.com/occasions">Occasions</a></li>
+      <li><a href="https://recipes.example.com/appetizers">Appetizers</a></li>
+      <li><a href="https://recipes.example.com/main-courses">Main courses</a></li>
+      <li><a href="https://recipes.example.com/desserts">Desserts</a></li>
+    </ul>
+  </nav>
+  <nav>
+    <ul>
+      <li><a href="https://recipes.example.com/terms">Terms</a></li>
+      <li><a href="https://recipes.example.com/privacy">Privacy Policy</a></li>
+    </ul>
+  </nav>
+</footer>
+```
+
+And that's it for the exercise! Here's the full code on the playground so that you can play around with it:
+
+<CodePlayground repository={"/02/03/exercise-solution"}></CodePlayground>

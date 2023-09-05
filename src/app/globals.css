@@ -71,7 +71,12 @@ a {
 }
 
 a:hover {
+    text-decoration: underline;
     text-underline-offset: 0.175em;
+}
+
+li {
+    @apply my-1
 }
 
 button {
