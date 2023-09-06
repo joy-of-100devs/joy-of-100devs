@@ -7,4 +7,13 @@
     height: var(--height);
     top: var(--top);
     left: var(--left);
+    background: #fff3;
+}
+
+.partial {
+    backdrop-filter: brightness(10) brightness(0.5) sepia(1) saturate(2) hue-rotate(60deg) brightness(1.6);
+}
+
+.target {
+    backdrop-filter: brightness(10) brightness(0.5) sepia(1) saturate(2) hue-rotate(60deg) brightness(2);
 }

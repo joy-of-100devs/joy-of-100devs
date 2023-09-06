@@ -1,0 +1,8 @@
+.backdropRoot {
+    position: relative;
+    mix-blend-mode: screen;
+}
+
+.image {
+    @apply my-0
+}

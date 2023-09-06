@@ -14,7 +14,7 @@ export interface HighlightAreaProps {
 }
 
 export default function HighlightArea(props: HighlightAreaProps) {
-    return <button className={`rounded-[8px] border-none bg-[#fff2] absolute ${styles.highlight}`} style={{
+    return <button className={`rounded-[8px] border-none absolute ${styles.highlight}`} style={{
         "--width": `${props.width}%`,
         "--height": `${props.height}%`,
         "--top": `${props.top}%`,

@@ -2,8 +2,8 @@ import HighlightArea from "@/components/PathSimulator/HighlightArea";
 
 export default function ClientSidePathSimulator() {
     return <div className={"absolute w-full h-full top-0 left-0"}>
-        <HighlightArea width={12} height={18} top={3} left={38} path={"/"}/>
-        <HighlightArea width={11.5} height={20} top={29} left={2.5} path={"/index.html"}/>
+        <HighlightArea width={12} height={19} top={0} left={38} path={"/"}/>
+        <HighlightArea width={11.5} height={19} top={27.25} left={2.5} path={"/index.html"}/>
         <HighlightArea width={11.5} height={18} top={29} left={14.5} path={"/static"}/>
         <HighlightArea width={11.5} height={19} top={29} left={27} path={"/about.html"}/>
         <HighlightArea width={11.5} height={19} top={29} left={39} path={"/terms.html"}/>
@@ -13,5 +13,6 @@ export default function ClientSidePathSimulator() {
         <HighlightArea width={10.5} height={20} top={54} left={14.5} path={"/static/app.js"}/>
         <HighlightArea width={10} height={20} top={54} left={27.5} path={"/static/module.js"}/>
         <HighlightArea width={11.5} height={17} top={55} left={38} path={"/assets/recipes"}/>
+        <HighlightArea width={11.5} height={17} top={55} left={52} path={"/assets/web"}/>
     </div>;
 }
