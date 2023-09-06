@@ -1,13 +1,13 @@
 ---
-title: 'Internal URLs'
+title: 'Relative URLs'
 publishedOn: 2023-08-19T12:40:00+0700
 ---
 
-In the previous lessons, we've only talked about and used external URLs so far - the ones
+In the previous lessons, we've only talked about and used absolute URLs so far - the ones
 that has a <code>http://</code> or <code>https://</code> at the beginning that can point to your site
 or other websites on the interwebz.
 
-This type of URL is necessary for any resources that our own website does not have! However, an external URL requires
+This type of URL is necessary for any resources that our own website does not have! However, an absolute URL requires
 an unchanging base part to work consistently (like <code>https://recipe.example.com/</code>, which is how a website
 distinguishes itself from others)
 
@@ -17,21 +17,21 @@ For example, when we code on our machine, this base part can be <code>http://loc
 <code>https://recipes.example.com/</code>. There's no way a sign can points to several different locations on the road!
 😅
 
-Fortunately, we can use an internal URL to solve this woe!
+Fortunately, we can use a relative URL to solve this woe!
 
 
-## Internal URL
+## Relative URL
 
-How is an internal URL different from an external URL?
+How is a relative URL different from an absolute URL?
 
-Compared to an external URL, an internal URL does not have any base part, and it can only point to a
+Compared to an absolute URL, a relative URL does not have any base part, and it can only point to a
 resource on your *own* website - be it another page, a script, an image, or something else. On the upside though,
 you don't need to care about what the base URL is
 
-There are 2 kinds of internal URL - an absolute URL and a relative URL.
+There are 2 kinds of relative URL - a root-relative URL and a non-root-relative URL.
 
 
-### Absolute URL
+### Root-relative URL
 <PathSimulator/>
 
-### Relative URL
+### Non-root-relative URL

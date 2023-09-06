@@ -1,0 +1,10 @@
+.highlight {
+    --width: 0;
+    --height: 0;
+    --top: 0;
+    --left: 0;
+    width: var(--width);
+    height: var(--height);
+    top: var(--top);
+    left: var(--left);
+}
