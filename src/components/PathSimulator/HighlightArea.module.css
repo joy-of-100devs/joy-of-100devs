@@ -1,4 +1,4 @@
-.highlight {
+.highlightArea {
     --width: 0;
     --height: 0;
     --top: 0;
@@ -7,13 +7,13 @@
     height: var(--height);
     top: var(--top);
     left: var(--left);
-    background: #fff3;
+    transition: backdrop-filter 0.1s ease-out;
 }
 
-.partial {
-    backdrop-filter: brightness(10) brightness(0.5) sepia(1) saturate(2) hue-rotate(60deg) brightness(1.6);
+.partial, .highlight:hover {
+    backdrop-filter: brightness(100) sepia(1) saturate(100) hue-rotate(60deg);
 }
 
 .target {
-    backdrop-filter: brightness(10) brightness(0.5) sepia(1) saturate(2) hue-rotate(60deg) brightness(2);
+    backdrop-filter: brightness(100) sepia(1) saturate(100) hue-rotate(120deg) brightness(2);
 }

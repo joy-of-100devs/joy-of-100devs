@@ -26,12 +26,54 @@ How is a relative URL different from an absolute URL?
 
 Compared to an absolute URL, a relative URL does not have any base part, and it can only point to a
 resource on your *own* website - be it another page, a script, an image, or something else. On the upside though,
-you don't need to care about what the base URL is
+you don't need to care about what the base URL is.
 
 There are 2 kinds of relative URL - a root-relative URL and a non-root-relative URL.
 
 
 ### Root-relative URL
+
+A root-relative URL always starts with a forward slash! This tells the server to start searching from the top-most
+folder that *the server knows*, called the <ColorEmphasis>*root folder*</ColorEmphasis>.
+
+Let's understand how a root-relative URL works first!
+
 <PathSimulator/>
+
+In this demo, the *root folder* is the folder whose name is <code>/</code>, and contains files like
+<code>terms.html</code> and some folders like <code>assets</code> and <code>recipes</code>.
+
+If you type in <code>/</code> in the input box at the bottom of the demo, you'll see the root folder turn cyan.
+Similarly, if the server finds a file or directory with the path you enter, that file or directory
+glow <ColorEmphasis color="cyan">*light cyan*</ColorEmphasis>.
+
+If you want to access a file or a folder inside the root folder, you only need to include the folder name after the
+forward slash. Here are 2 examples that you can feed into the demo:
+```
+/terms.html
+/recipes
+```
+
+If you want to get to the <code>ice-cream</code> folder, you can go to the <code>recipes</code> folder, then
+the <code>ice-cream</code> folder inside. Between each folder, there should be a forward slash, acting as a
+separator! You can try this URL:
+```
+/recipes/ice-cream
+```
+
+Note that in this demo, folders that you've traversed through but don't match will turn <ColorEmphasis color="lime">*light
+green*</ColorEmphasis> - these hints help you track your position in the file tree!
+
+
+If you want to get to the <code>apple.jpg</code> file, you can go to the <code>assets</code> folder, then
+the <code>recipes</code> folder inside, and finally reach the <code>apple.jpg</code> file.
+Here's the URL that you can feed into the demo:
+```
+/assets/recipes/apple.jpg
+```
+
+Now we've learned the basics of a root-relative URL, you should try to turn every
+file <ColorEmphasis color="cyan">*cyan*</ColorEmphasis> at least once using the
+input box in the demo component!
 
 ### Non-root-relative URL
