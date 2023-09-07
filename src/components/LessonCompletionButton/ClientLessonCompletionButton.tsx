@@ -7,8 +7,8 @@ import styles from './styles.module.css'
 import {useSession} from "next-auth/react";
 import axios from "axios";
 
-async function LessonCompletionButton(params: { lessonId: string, href: string }) {
-    const session = await useSession();
+function LessonCompletionButton(params: { lessonId: string, href: string }) {
+    const session = useSession();
 
     async function completeLesson() {
         if (!session.data?.user) return;
