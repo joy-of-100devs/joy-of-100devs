@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "generate-id": "ts-node ./src/generateId.ts",
     "database": "npm run database:windows",
     "database:windows": "(if not exist _database mkdir _database) && mongod --port 8888 --dbpath ./_database"
   },

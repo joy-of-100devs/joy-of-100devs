@@ -2,10 +2,10 @@ import React from "react";
 import {loadLesson, loadModuleInfo} from "@/helpers/lessonHelper";
 import IconButton, {IconLink} from "@/components/IconButton";
 import {FaHome} from "react-icons/fa";
-import Link from "next/link";
-import {AiOutlineRight} from "react-icons/ai";
 import LessonLink from "@/components/LessonLink";
 import LessonNav, {LessonNavHamburger, LessonNavProvider} from "@/components/LessonNav";
+import {getCompletionDataOfMultipleLessons} from "@/domains/lessonCompletions/service";
+import {ObjectId} from "@/helpers/abbreviations";
 
 export default async function LessonPageLayout(props: React.PropsWithChildren & {
     params: {slug: string[]}
@@ -13,7 +13,11 @@ export default async function LessonPageLayout(props: React.PropsWithChildren & 
     const moduleSlug = [...props.params.slug];
     moduleSlug.pop();
     const moduleInfo = await loadModuleInfo(moduleSlug.join("/"));
-    const lessonInfo = await loadLesson(props.params.slug.join("/"));
+    const completionData = await getCompletionDataOfMultipleLessons({
+        lessonIds: moduleInfo.lessons.map(lesson => {
+            return new ObjectId(lesson.meta._id);
+        })
+    });
 
     return <LessonNavProvider>
         <div className={"w-full h-full flex flex-col p-[16px] gap-[16px] overflow-hidden relative"}>
@@ -29,7 +33,15 @@ export default async function LessonPageLayout(props: React.PropsWithChildren & 
             <div className={"flex-1 flex relative h-0 gap-[16px] mr-[-8px]"}>
                 <LessonNav>
                     {moduleInfo.lessons.map(lesson => {
-                        return <LessonLink key={lesson.slug} slug={lesson.slug} isActive={props.params.slug.join("/") === lesson.slug} title={lesson.meta.title}></LessonLink>
+                        return <LessonLink
+                            key={lesson.slug}
+                            slug={lesson.slug}
+                            isActive={props.params.slug.join("/") === lesson.slug}
+                            title={lesson.meta.title}
+                            isCompleted={completionData.some(item => {
+                                return item._id.toString() === lesson.meta._id;
+                            })}
+                        ></LessonLink>
                     })}
                 </LessonNav>
                 <main className={"flex-1 flex overflow-hidden justify-center"}>

@@ -1,5 +1,5 @@
 import {withMiddleware} from "@/lib/api";
-import * as snippetRepo from '@/domains/snippets/repository';
+import * as completionRepo from '@/domains/lessonCompletions/repository';
 import {UnauthorizedError} from "@/lib/errors";
 import {ObjectId} from "@/helpers/abbreviations";
 import {z} from "zod";
@@ -9,11 +9,9 @@ export const PUT = withMiddleware(async function (request) {
         throw new UnauthorizedError();
     }
     const json = await request.json();
-    return await snippetRepo.saveSnippetToRepository({
+    return await completionRepo.completeLesson({
         userId: new ObjectId(request.user._id),
-        filename: z.string().nonempty().parse(json.filename),
-        repository: z.string().nonempty().parse(json.repository),
-        content: z.string().nullable().parse(json.content),
+        lessonId: new ObjectId(z.string().nonempty().parse(json.lessonId)),
     });
 });
 

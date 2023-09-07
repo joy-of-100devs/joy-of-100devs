@@ -14,6 +14,7 @@ export interface ModuleInfo {
 export interface LessonMetadata {
     title: string;
     description: string;
+    _id: string;
 }
 
 export const loadLesson = React.cache(async function loadLesson(slug: string) {
@@ -28,6 +29,7 @@ export const loadLesson = React.cache(async function loadLesson(slug: string) {
         meta: data.data as LessonMetadata,
     };
 });
+
 export const scanModule = React.cache(async function scanModule(slug: string) {
     const realPath = path.join(CONTENT_ROOT, slug);
     const entries = await fs.promises.readdir(realPath);

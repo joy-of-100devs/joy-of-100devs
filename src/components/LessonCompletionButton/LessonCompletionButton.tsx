@@ -1,11 +1,9 @@
 import * as React from 'react';
-import {IconLink} from "@/components/IconButton";
-import {PiFlagPennantBold} from "react-icons/pi";
-import styles from './styles.module.css'
 import {loadModuleInfo} from "@/helpers/lessonHelper";
 import path from "path";
+import ClientLessonCompletionButton from "@/components/LessonCompletionButton/ClientLessonCompletionButton";
 
-async function LessonCompletionButton(params: { slug: string[] }) {
+async function LessonCompletionButton(params: { lessonId: string, slug: string[] }) {
     const moduleInfo = await loadModuleInfo(params.slug.slice(0, -1).join("/"));
     const currentLessonIndex = moduleInfo.lessons.findIndex((lesson) => {
         return lesson.slug === params.slug.join("/");
@@ -17,7 +15,7 @@ async function LessonCompletionButton(params: { slug: string[] }) {
         link = path.join("/lesson", nextLesson.slug);
     }
 
-    return <IconLink href={link} icon={PiFlagPennantBold} className={styles.button}>Complete Lesson</IconLink>;
+    return <ClientLessonCompletionButton lessonId={params.lessonId} href={link}/>;
 }
 
 export default LessonCompletionButton;
