@@ -1,0 +1,12 @@
+.layout {
+    grid-template-columns: 12rem 1fr;
+    grid-template-rows: 30rem 30rem;
+    overflow: hidden;
+}
+
+@media only all and (min-width: 1500px) {
+    .layout {
+        grid-template-columns: 12rem 1fr 1fr;
+        grid-template-rows: 30rem;
+    }
+}

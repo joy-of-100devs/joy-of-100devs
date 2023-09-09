@@ -5,11 +5,12 @@ import {ComponentProps} from "react";
 import AuthorNotes from "@/components/AuthorNotes";
 import ServerImage from "../ServerImage";
 import CodeSnippet from "@/components/CodeSnippet";
-import CodePlayground from "@/components/CodePlayground";
 import HTMLElementDemo from "@/components/HTMLElementDemo";
 import HTMLElementDemo2 from "@/components/HTMLElementDemo2";
 import HTMLElementDemo3 from "@/components/HTMLElementDemo3";
 import PathSimulator from "@/components/PathSimulator";
+import AbsoluteURLDemo from "@/components/AbsoluteURLDemo";
+import CodePlayground from "@/components/CustomCodePlayground";
 
 const COMPONENT_MAP = {
     ColorEmphasis: ColorEmphasis,
@@ -30,6 +31,7 @@ const COMPONENT_MAP = {
     HTMLElementDemo2: HTMLElementDemo2,
     HTMLElementDemo3: HTMLElementDemo3,
     PathSimulator: PathSimulator,
+    AbsoluteURLDemo: AbsoluteURLDemo,
 };
 
 function CustomMDXRemote({source}: { source: string }) {

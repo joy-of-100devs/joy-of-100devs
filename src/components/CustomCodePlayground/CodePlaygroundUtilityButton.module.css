@@ -1,0 +1,7 @@
+.button {
+    @apply p-[4px] aspect-square hover:text-accent-4 focus-visible:text-accent-4
+}
+
+.icon {
+    @apply w-4 h-4;
+}

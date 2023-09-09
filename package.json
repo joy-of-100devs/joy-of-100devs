@@ -12,6 +12,7 @@
     "database:windows": "(if not exist _database mkdir _database) && mongod --port 8888 --dbpath ./_database"
   },
   "dependencies": {
+    "@codesandbox/sandpack-client": "^2.6.9",
     "@codesandbox/sandpack-react": "^2.6.9",
     "@codesandbox/sandpack-themes": "^2.0.21",
     "@monaco-editor/react": "^4.5.2",
@@ -34,6 +35,7 @@
     "gray-matter": "^4.0.3",
     "iconv-lite": "^0.6.3",
     "immer": "^10.0.2",
+    "jest": "^29.6.4",
     "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
     "mongodb": "^5.8.0",

@@ -5,9 +5,13 @@ import ClientSidePathSimulatorProvider from "@/components/PathSimulator/ClientSi
 import styles from './styles.module.css'
 import PathSimulatorInput from "@/components/PathSimulator/PathSimulatorInput";
 
-function PathSimulator() {
+export interface PathSimulatorProps {
+    cwd?: string;
+}
+
+function PathSimulator(props: PathSimulatorProps) {
     return <div className={"flex flex-col gap-4 bg-[#111] py-4 px-[16px] rounded-[8px]"}>
-        <ClientSidePathSimulatorProvider>
+        <ClientSidePathSimulatorProvider cwd={props.cwd}>
             <div className={styles.backdropRoot}>
                 <ServerImage className={styles.image} slug={"/02/04/file-routing.png"} alt={"File routing system"}></ServerImage>
                 <ClientSidePathSimulator></ClientSidePathSimulator>

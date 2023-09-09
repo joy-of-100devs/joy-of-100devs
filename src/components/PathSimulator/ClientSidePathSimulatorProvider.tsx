@@ -4,6 +4,7 @@ import React from "react";
 import {useMemoizedObject} from "@/hooks/useMemoized";
 
 export interface ClientSidePathSimulatorContext {
+    cwd?: string;
     currentPath: string;
     setCurrentPath: (path: string) => void;
 }
@@ -14,9 +15,10 @@ export const ClientSidePathSimulatorContext = React.createContext<ClientSidePath
     },
 });
 
-export default function ClientSidePathSimulatorProvider(props: { children?: React.ReactNode }) {
+export default function ClientSidePathSimulatorProvider(props: { cwd?: string, children?: React.ReactNode }) {
     const [currentPath, setCurrentPath] = React.useState("");
     const memoized = useMemoizedObject({
+        cwd: props.cwd,
         currentPath,
         setCurrentPath
     });

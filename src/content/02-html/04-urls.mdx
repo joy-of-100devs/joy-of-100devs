@@ -1,0 +1,180 @@
+---
+title: 'URLs'
+publishedOn: 2023-08-19T12:40:00+0700
+_id: 64f951be1b2ed21dd9a3b1ee
+---
+
+We have used URLs as part of your first page before. In this lesson, let's learn about this concept in depth!
+
+URLs are one of the most important pieces of the interwebz - they link web pages and various stuff from different places together.
+Using URLs will not only give you the ability to access images, video and resources, it will also help you add styling and
+interactivity to your page in a reusable way!
+
+There are 2 kinds of URLs - relative URLs and absolute URLs. Let's walk through each of them! 📗
+
+## Relative URL
+
+What is a relative URL?
+
+A relative URL is very similar to the file path that you see on your computer! It points to a
+resource on your *own* website - be it another page, a script, an image, or something else.
+
+There are 2 kinds of relative URLs - a root-relative URL and a non-root-relative URL.
+
+
+### Root-relative URL
+
+Imagine a server as a robot.
+
+A root-relative URL always starts with a forward slash! This tells the robot to start from the top-most
+folder that *the server knows*, called the <ColorEmphasis>*root folder*</ColorEmphasis>.
+
+On your ordinary Windows computer, there can be many root folders like <code>C:\\</code> or <code>D:\\</code>, while on Mac and Linux or UNIX-like
+operating systems, the root folder is called <code>/</code> and might contain folders like <code>bin</code>,
+<code>etc</code>, <code>home</code>, <code>mnt</code>, <code>usr</code> and <code>var</code>.
+
+In a typical web server, the root folder is also the project folder, which contains all the files that makes up your
+website.
+
+Let's understand how a root-relative URL works first!
+
+<PathSimulator/>
+
+In this demo, the *root folder* is the folder whose name is <code>/</code>, and contains files like
+<code>terms.html</code> and some folders like <code>assets</code> and <code>recipes</code>.
+
+If you type in <code>/</code> in the input box at the bottom of the demo, you'll see the root folder turn cyan.
+Similarly, if the robot reaches a file or directory with the path you enter, that file or directory
+glow <ColorEmphasis color="cyan">*light cyan*</ColorEmphasis>.
+
+If you want the bot to reach a file or a folder inside the root folder, you only need to include the folder name after the
+forward slash - the beginning slash is a special syntax! Here are 2 examples that you can feed into the demo:
+```
+/terms.html
+/recipes
+```
+
+If you want to get to the <code>ice-cream</code> folder, you can go to the <code>recipes</code> folder, then
+the <code>ice-cream</code> folder inside. Between each folder, there should be a forward slash, acting as a
+separator! You can try this URL:
+```
+/recipes/ice-cream
+```
+
+Note that in this demo, folders that you've traversed through but don't match will turn <ColorEmphasis color="lime">*light
+green*</ColorEmphasis> - these hints help you track your position in the file tree!
+
+
+If you want to get to the <code>apple.jpg</code> file, you can go to the <code>assets</code> folder, then
+the <code>recipes</code> folder inside, and finally reach the <code>apple.jpg</code> file.
+Here's the URL that you can feed into the demo:
+```
+/assets/recipes/apple.jpg
+```
+
+Now we've learned the basics of a root-relative URL, you should try to get the robot turn every
+file <ColorEmphasis color="cyan">*cyan*</ColorEmphasis> at least once using the
+input box in the demo component!
+
+
+### Non-root-relative URL
+
+Now, let's talk about a non-root-relative URL. Unlike a root-relative URL, which always has a slash, a non-root-relative
+URL can start from any folder - we call this the <ColorEmphasis>working directory</ColorEmphasis>.
+
+<PathSimulator cwd={"/assets"}/>
+
+In this example, the bot start from the <code>assets</code> folder, which is
+marked <ColorEmphasis color={"#ff68c9"}>pink</ColorEmphasis>.
+
+If you type in <code>recipes</code>, the recipe path will be cyan. That's because from the <code>assets</code>
+recipe, the robot goes to the <code>recipes</code> folder inside of it.
+```
+recipes
+```
+
+Typing <code>recipes/strawberry.jpg</code> in the input box will turn the strawberry file cyan. Again, you need to use
+the forward slash to separate the folder names/filenames.
+```
+recipes/strawbery.jpg
+```
+
+From anywhere on the file tree, if you add a dot <code>.</code>, it tells the robot to stay put where it is.
+
+For example, if you type just a dot into the input box, we end up right where we started - the pink folder then
+turns <ColorEmphasis color="cyan">cyan</ColorEmphasis>.
+
+```
+.
+```
+
+Here's another example - the robot starts from the <code>assets</code> folder, stays put there for 1 turn, then goes inside
+the <code>web</code> folder, stays put there for the next 2 turns, and finally reaches the <code>icon.svg</code> file,
+which turns cyan.
+
+```
+./web/././icon.svg
+```
+
+From anywhere in the file tree, if you add 2 dots <code>..</code>, it tells the machine to go up the tree, into the
+parent folder. If the robot is already on the root folder, it discovers it can't go further, so it stays put on the
+root folder.
+
+For example, from the <code>assets</code> folder, all of these will allow our robot to reach the root folder on the
+very top of the tree.
+
+```
+..
+./..
+../.
+../..
+.././..
+```
+
+Similar to the previous section, now let's try to help the robot reach every file in the tree!
+
+<AuthorNotes heading={"Good to know!"} variant={"recommendation"}>
+    The <code>.</code> and <code>..</code> syntax, which allows our robot to stay put and go to the parent folder
+    respectively, also works in root-relative URLs!
+
+    I don't think you ever need it in a real use case though. 😅
+</AuthorNotes>
+
+## Absolute URL
+
+Here's the structure of a basic absolute URL with 3 parts. Hover over each part to see what it does!
+
+<AbsoluteURLDemo/>
+
+## Comparisons
+
+Absolute URLs is necessary for any resources that our own website does not have, and needs to be fetched from other
+websites.
+
+However, using it to access stuff on your own website is a foot-gun. An absolute URL requires an unchanging
+base part to work consistently (which starts at the beginning of the URL and ends at the green part). Imagine having
+to repeat that part over and over again, dozens to hundreds of times, in your URLs. 🥵
+
+This base part will also change a LOT, which makes the matter much worse.
+For example, when we code on our machine, this base part can be <code>http://localhost:3000/</code> or
+<code>http://localhost:63342/</code>. When the code is run on your server, this base part will become something like
+<code>https://recipes.example.com/</code>. There's no way a sign can points to several different locations on the road!
+
+A root-relative URL can redirect to the correct resource no matter what server you're running the code on, and is much
+more concise than an absolute URL.
+
+How about non root-relative URLs? There are 3 reasons we should never use it in HTML:
+
+- A root-relative URL communicates what it's doing better than a non-root-relative URL! Here's a good example.
+    ```
+    // Assuming that we're in /recipes/index.html
+
+    ice-cream/index.html ❌ // We'll have to rely on the URL on the top bar to know what it's doing.
+    /recipes/ice-cream/index.html ✅ // The URL is pointing to an ice-cream recipe without us having to look at the URL.
+    ```
+- If you relocate your HTML file somewhere else, you'll have to fix all the URLs of every link and resource in that file.
+- There's a big browser quirk - 2 URLs that are almost identical, one of which has a trailing slash while the other
+doesn't, has different <ColorEmphasis>working directories</ColorEmphasis>! This basically makes the relative URL
+unreliable. Here's a playground that helps you understand the quirk.
+
+<CodePlayground repository={"/02/04/non-root-relative-url-quirks"}></CodePlayground>

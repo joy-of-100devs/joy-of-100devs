@@ -27,8 +27,13 @@ function parseRelativeURL(input: string) {
 }
 
 function isMatchingRootPath(input: string, original: string, cwd: string = "") {
+    if (!input) return false;
     try {
         const parsedInput = parseRelativeURL(input);
+        // Root path changes the comparison to the root directory.
+        if (parsedInput[0] === "/") {
+            cwd = "/"
+        }
         const parsedOriginal = parseRelativeURL(original);
         return path.join(cwd, ...parsedInput) === path.join(...parsedOriginal);
     } catch (e) {
@@ -39,6 +44,10 @@ function isMatchingRootPath(input: string, original: string, cwd: string = "") {
 function isPartiallyMatchingRootPath(input: string, original: string, cwd: string = "") {
     try {
         const parsedInput = parseRelativeURL(input);
+        // Root path changes the comparison to the root directory.
+        if (parsedInput[0] === "/") {
+            cwd = "/"
+        }
         const parsedOriginal = parseRelativeURL(original);
         for (let i = parsedInput.length; i > 0; i--) {
             const slice = parsedInput.slice(0, i);
@@ -52,15 +61,22 @@ function isPartiallyMatchingRootPath(input: string, original: string, cwd: strin
     }
 }
 
+function isCWD(original: string, cwd?: string) {
+    if (!cwd) return false;
+    return path.join(original) === path.join(cwd);
+}
+
 export default function HighlightArea(props: HighlightAreaProps) {
-    const {currentPath} = React.useContext(ClientSidePathSimulatorContext);
+    const {currentPath, cwd} = React.useContext(ClientSidePathSimulatorContext);
 
     let highlight;
-    if (isMatchingRootPath(currentPath, props.path)) {
+    if (isMatchingRootPath(currentPath, props.path, cwd)) {
         highlight = styles.target;
-    } else if (isPartiallyMatchingRootPath(currentPath, props.path)) {
+    } else if (isCWD(props.path, cwd)) {
+        highlight = styles.cwd;
+    } else if (isPartiallyMatchingRootPath(currentPath, props.path, cwd)) {
         highlight = styles.partial;
-    } else {
+    }  else {
         highlight = "";
     }
 
