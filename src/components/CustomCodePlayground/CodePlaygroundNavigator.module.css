@@ -1,0 +1,7 @@
+.navigatorButton {
+    @apply bg-transparent flex-none p-[4px] hover:text-accent-4 focus-visible:text-accent-4
+}
+
+.navigatorButtonIcon {
+    @apply w-5 h-5
+}

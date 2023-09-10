@@ -2,7 +2,7 @@ const ASSET_SERVER_URL = new URL(process.env.NEXT_PUBLIC_ASSET_SERVER_URL);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    reactStrictMode: true,
+    // reactStrictMode: true,
     images: {
         remotePatterns: [
             {
@@ -22,11 +22,11 @@ const nextConfig = {
         )
 
         config.module.rules.push(
-            // Reapply the existing rule, but only for svg imports ending in ?url
+            // Reapply the existing rule, but only for svg imports ending in ?navigatorUrl
             {
                 ...fileLoaderRule,
                 test: /\.svg$/i,
-                resourceQuery: /url/, // *.svg?url
+                resourceQuery: /navigatorUrl/, // *.svg?navigatorUrl
             },
             // Convert all other *.svg imports to React components
             {

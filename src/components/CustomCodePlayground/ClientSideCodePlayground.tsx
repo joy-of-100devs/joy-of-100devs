@@ -7,6 +7,8 @@ import {
 } from "@codesandbox/sandpack-react/unstyled";
 import CodePlaygroundProvider from "@/components/CustomCodePlayground/CodePlaygroundProvider";
 import CodePlaygroundLayout from "@/components/CustomCodePlayground/CodePlaygroundLayout";
+import {Sandpack} from "@codesandbox/sandpack-react";
+import CodePlaygroundConsoleProvider from "@/components/CustomCodePlayground/CodePlaygroundConsoleProvider";
 
 export interface CodePlaygroundProps {
     template?: SandpackPredefinedTemplate,
@@ -20,15 +22,21 @@ export interface CodePlaygroundProps {
 }
 
 function ClientSideCodePlayground(props: CodePlaygroundProps) {
-    return <CodePlaygroundProvider
-        files={props.files}
-        userFiles={props.userFiles}
-        environment={props.environment}
-        externalResources={props.externalResources}
-        initialActiveFile={props.initialActiveFile}
-    >
-        <CodePlaygroundLayout></CodePlaygroundLayout>
-    </CodePlaygroundProvider>;
+    return <>
+        <CodePlaygroundProvider
+            files={props.files}
+            userFiles={props.userFiles}
+            environment={props.environment}
+            repository={props.repository}
+            externalResources={props.externalResources}
+            initialActiveFile={props.initialActiveFile}
+            startRoute={props.startRoute}
+        >
+            <CodePlaygroundConsoleProvider>
+                <CodePlaygroundLayout></CodePlaygroundLayout>
+            </CodePlaygroundConsoleProvider>
+        </CodePlaygroundProvider>
+    </>;
 }
 
 export default ClientSideCodePlayground;
