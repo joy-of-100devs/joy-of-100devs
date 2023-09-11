@@ -5,7 +5,11 @@ import {SandboxEnvironment, SandpackFile} from "@codesandbox/sandpack-react/unst
 import {getClientBaseUrl} from "@/components/CustomCodePlayground/helpers/navigator";
 import {useMemoizedObject} from "@/hooks/useMemoized";
 import {dispatchCommand} from "@/components/CustomCodePlayground/helpers/iframe";
-import {patchClient404, RUNTIME_DISPATCHER_URL} from "@/components/CustomCodePlayground/helpers/protocol";
+import {
+    patchClient404,
+    patchClientInitialNavigation,
+    RUNTIME_DISPATCHER_URL
+} from "@/components/CustomCodePlayground/helpers/protocol";
 import {CodePlaygroundConsoleContext} from "@/components/CustomCodePlayground/CodePlaygroundConsoleProvider";
 
 const DEFAULT_START_ROUTE = "/";
@@ -50,6 +54,7 @@ export function useClient(iframeRef: React.RefObject<HTMLIFrameElement | null>, 
 
         pendingClient.then(async client => {
             await patchClient404(client);
+            await patchClientInitialNavigation(client);
             const unsub = client.listen(e => {
                 if (e.type === "done") {
                     setClient(client);
@@ -86,7 +91,7 @@ export function useClientUpdate(client: SandpackClient | null, state: ClientUpda
             });
             requestAnimationFrame(() => {
                 if (url) {
-                    client.iframe.setAttribute("src", url);
+                    client.iframe.contentWindow?.location.replace(url);
                 }
             });
         }
@@ -120,7 +125,7 @@ export function useClientNavigation(client: SandpackClient | null, config: Clien
         async function navigate() {
             if (needsToNavigate && client?.iframe && navigatorUrl) {
                 setNeedsToNavigate(false);
-                client.iframe.src = navigatorUrl;
+                client.iframe.contentWindow?.location.replace(navigatorUrl);
             }
         }
 

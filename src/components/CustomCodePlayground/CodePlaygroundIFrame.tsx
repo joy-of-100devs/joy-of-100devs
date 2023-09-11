@@ -56,7 +56,7 @@ function _CodePlaygroundIFrame(props: {
             <CodePlaygroundNavigator/>
             <div className={"flex flex-1 relative"}>
                 <iframe ref={iframeRef}
-                        sandbox={"allow-downloads allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts"}
+                        sandbox={"allow-downloads allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation"}
                         className={"absolute rounded-[8px] top-0 left-0 w-full h-full bg-white"}></iframe>
             </div>
         </div>

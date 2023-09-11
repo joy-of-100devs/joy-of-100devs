@@ -3,6 +3,7 @@ import {IPreviewRequestMessage, IPreviewResponseMessage} from "static-browser-se
 import {getExtension, normalizeFilepath} from "static-browser-server";
 import {CHANNEL_NAME} from "static-browser-server/src/preview/relay/constants";
 import {EXTENSIONS_MAP} from "@/components/CustomCodePlayground/helpers/extensions";
+import {FilesMap} from "@codesandbox/nodebox";
 
 export const RUNTIME_DISPATCHER_URL = new URL("/static/dispatcher.js", process.env.NEXT_PUBLIC_REPOSITORY_SERVER_URL);
 export const ERROR_PAGE = `<!doctype html>
@@ -17,14 +18,14 @@ export const ERROR_PAGE = `<!doctype html>
 <body>
   <p>404 Not Found</p>
 </body>
-</html>`
+</html>`;
 
 // This patch allows 404 static pages to be able to navigate back to another page.
 export function patchClient404(client: SandpackClient) {
     // @ts-ignore
     if (client.previewController) {
         // @ts-ignore
-        client.previewController.handleWorkerRequest = async function(this, request: IPreviewRequestMessage) {
+        client.previewController.handleWorkerRequest = async function (this, request: IPreviewRequestMessage) {
             if (!this.initPromise) {
                 throw new Error("Init promise is null");
             }
@@ -77,6 +78,22 @@ export function patchClient404(client: SandpackClient) {
                 port.postMessage(responseMessage);
             }
         };
-        client.updateSandbox();
+    }
+}
+
+export function patchClientInitialNavigation(client: SandpackClient) {
+    // @ts-ignore
+    if (client.previewController) {
+        // @ts-ignore
+        client.compile = async function (files: FilesMap) {
+            // @ts-ignore
+            this.files = new Map(Object.entries(files));
+
+            // @ts-ignore
+            await this.previewController.initPreview();
+
+            this.status = "done";
+            this.dispatch({type: "done", compilatonError: false});
+        };
     }
 }
