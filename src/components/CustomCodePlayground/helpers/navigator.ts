@@ -15,27 +15,3 @@ export async function getClientBaseUrl(client: SandpackClient): Promise<URL | nu
     }
     return null;
 }
-
-export function shouldNavigatorExist(client: SandpackClient) {
-    // @ts-ignore
-    const previewController: URL = client.previewController;
-    // @ts-ignore
-    const bundlerUrl: URL = client.bundlerURL;
-
-    return previewController || bundlerUrl;
-}
-
-export function getClientType(client: SandpackClient) {
-    // @ts-ignore
-    const previewController: URL = client.previewController;
-    // @ts-ignore
-    const bundlerUrl: URL = client.bundlerURL;
-
-    if (previewController) {
-        return "static";
-    } else if (bundlerUrl) {
-        return "runtime";
-    } else {
-        return "node";
-    }
-}

@@ -4,12 +4,16 @@ import {useMemoizedObject} from "@/hooks/useMemoized";
 import {SandpackClient} from "@codesandbox/sandpack-client";
 import {getClientBaseUrl} from "@/components/CustomCodePlayground/helpers/navigator";
 
-type LogType = "log" | "error" | "warn" | "info";
+export type LogType = "log" | "error" | "warn" | "info";
 
 export interface LogMessage {
     $type: "Console",
     type: LogType,
     data: string[]
+}
+
+export interface ClearLogsMessage {
+    $type: "ClearLogs",
 }
 
 interface Entry {
@@ -20,14 +24,14 @@ interface Entry {
 interface CodePlaygroundConsoleContext {
     logs: Entry[],
     addLogs: (entry: Entry) => void,
-    resetLogs: () => void,
+    clearLogs: () => void,
 }
 
 export const CodePlaygroundConsoleContext = React.createContext<CodePlaygroundConsoleContext>({
     logs: [],
     addLogs() {
     },
-    resetLogs() {
+    clearLogs() {
     },
 });
 
@@ -43,12 +47,12 @@ function CodePlaygroundConsoleProvider(props: {
         });
     }, []);
 
-    const resetLogs = React.useCallback(() => {
+    const clearLogs = React.useCallback(() => {
         setLogs([]);
     }, []);
 
     return <CodePlaygroundConsoleContext.Provider value={useMemoizedObject({
-        logs, resetLogs, addLogs
+        logs, clearLogs, addLogs
     })}>
         {props.children}
     </CodePlaygroundConsoleContext.Provider>;
@@ -58,15 +62,25 @@ export function usePlaygroundConsoleProvider(client: SandpackClient | null) {
     const context = React.useContext(CodePlaygroundConsoleContext);
 
     React.useEffect(() => {
-        async function load(e: MessageEvent<LogMessage>) {
+        async function load(e: MessageEvent<LogMessage | ClearLogsMessage>) {
             if (!client) return;
             const baseUrl = await getClientBaseUrl(client);
             if (!baseUrl) return;
-            if (e.data.$type !== "Console" || e.origin !== baseUrl.origin) return;
-            context.addLogs({
-                type: e.data.type,
-                data: e.data.data,
-            });
+            if (e.origin !== baseUrl.origin) return;
+
+
+            switch (e.data.$type) {
+                case "Console": {
+                    context.addLogs({
+                        type: e.data.type,
+                        data: e.data.data,
+                    });
+                    break;
+                }
+                case "ClearLogs": {
+                    context.clearLogs();
+                }
+            }
         }
 
         window.addEventListener("message", load);

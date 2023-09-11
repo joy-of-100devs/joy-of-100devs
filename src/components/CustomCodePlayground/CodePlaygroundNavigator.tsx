@@ -2,7 +2,7 @@ import React from "react";
 import IconButton from "@/components/IconButton";
 import {IconType} from "react-icons";
 import styles from './CodePlaygroundNavigator.module.css';
-import {AiOutlineHome, AiOutlineLeft, AiOutlineReload, AiOutlineRight} from "react-icons/ai";
+import {AiOutlineLeft, AiOutlineReload, AiOutlineRight} from "react-icons/ai";
 import {NavigatorContext} from "@/components/CustomCodePlayground/CodePlaygroundIFrame";
 import {TbPlayerTrackPrev} from "react-icons/tb";
 

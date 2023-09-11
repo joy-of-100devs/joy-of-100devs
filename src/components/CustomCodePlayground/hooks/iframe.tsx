@@ -5,8 +5,9 @@ import {SandboxEnvironment, SandpackFile} from "@codesandbox/sandpack-react/unst
 import {getClientBaseUrl} from "@/components/CustomCodePlayground/helpers/navigator";
 import {useMemoizedObject} from "@/hooks/useMemoized";
 import {dispatchCommand} from "@/components/CustomCodePlayground/helpers/iframe";
+import {patchClient404, RUNTIME_DISPATCHER_URL} from "@/components/CustomCodePlayground/helpers/protocol";
+import {CodePlaygroundConsoleContext} from "@/components/CustomCodePlayground/CodePlaygroundConsoleProvider";
 
-const RUNTIME_DISPATCHER_URL = new URL("/static/dispatcher.js", process.env.NEXT_PUBLIC_REPOSITORY_SERVER_URL);
 const DEFAULT_START_ROUTE = "/";
 
 interface ClientSetup {
@@ -23,7 +24,6 @@ interface ClientUpdateState {
 interface ClientNavigationInitialConfig {
     startRoute?: string;
 }
-
 
 export function useClient(iframeRef: React.RefObject<HTMLIFrameElement | null>, setup: ClientSetup): SandpackClient | null {
     const [client, setClient] = React.useState<SandpackClient | null>(null);
@@ -48,7 +48,8 @@ export function useClient(iframeRef: React.RefObject<HTMLIFrameElement | null>, 
             startRoute: setup.startRoute ?? DEFAULT_START_ROUTE,
         });
 
-        pendingClient.then(client => {
+        pendingClient.then(async client => {
+            await patchClient404(client);
             const unsub = client.listen(e => {
                 if (e.type === "done") {
                     setClient(client);

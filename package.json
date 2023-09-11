@@ -60,6 +60,8 @@
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.3",
-    "@types/lodash": "^4.14.197"
+    "@types/lodash": "^4.14.197",
+    "@types/mime-db": "^1.43.1",
+    "mime-db": "^1.52.0"
   }
 }

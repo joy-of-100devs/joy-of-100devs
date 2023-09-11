@@ -11,7 +11,7 @@ import styles from './CodePlaygroundPreview.module.css'
 export default function CodePlaygroundPreview() {
     const [previewMode, setPreviewMode] = React.useState<PreviewMode>("browser");
 
-    return <div className={`flex flex-col ${styles.preview}`}>
+    return <div className={`flex flex-col ${styles.preview} overflow-hidden`}>
         <PreviewModeSwitcher mode={previewMode} switchMode={setPreviewMode}></PreviewModeSwitcher>
         <CodePlaygroundIFrame shown={previewMode === "browser"}></CodePlaygroundIFrame>
         <CodePlaygroundConsole shown={previewMode === "console"}></CodePlaygroundConsole>
@@ -27,7 +27,7 @@ interface PreviewModeSwitcherProps {
 }
 
 function PreviewModeSwitcher(props: PreviewModeSwitcherProps) {
-    const {resetLogs} = React.useContext(CodePlaygroundConsoleContext);
+    const {clearLogs} = React.useContext(CodePlaygroundConsoleContext);
 
     return <nav className={"flex justify-between gap-[4px] py-1 px-[8px] bg-[#0003]"}>
         <div className={"flex items-center"}>
@@ -39,7 +39,7 @@ function PreviewModeSwitcher(props: PreviewModeSwitcherProps) {
                     }} key={mode}>{capitalize(mode)}</button>;
             })}
         </div>
-        <IconButton icon={BsEraser} title={"Clear console"} onClick={resetLogs}
+        <IconButton icon={BsEraser} title={"Clear console"} onClick={clearLogs}
                     className={styles.clearConsoleButton}
                     iconClassName={styles.clearConsoleButtonIcon}></IconButton>
 

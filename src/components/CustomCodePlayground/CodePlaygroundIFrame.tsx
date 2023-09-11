@@ -1,7 +1,6 @@
 import React from "react";
 import {CodePlaygroundContext} from "@/components/CustomCodePlayground/CodePlaygroundProvider";
 import CodePlaygroundNavigator from "@/components/CustomCodePlayground/CodePlaygroundNavigator";
-import {shouldNavigatorExist} from "@/components/CustomCodePlayground/helpers/navigator";
 import {useClient, useClientNavigation, useClientUpdate} from "@/components/CustomCodePlayground/hooks/iframe";
 import {usePlaygroundConsoleProvider} from "@/components/CustomCodePlayground/CodePlaygroundConsoleProvider";
 
@@ -54,7 +53,7 @@ function _CodePlaygroundIFrame(props: {
 
     return <NavigatorContext.Provider value={navigatorFunctions}>
         <div className={`w-full h-full flex-col ${props.shown ? "flex" : "hidden"}`}>
-            {client && shouldNavigatorExist(client) && <CodePlaygroundNavigator/>}
+            <CodePlaygroundNavigator/>
             <div className={"flex flex-1 relative"}>
                 <iframe ref={iframeRef}
                         sandbox={"allow-downloads allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts"}

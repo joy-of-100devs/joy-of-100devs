@@ -7,7 +7,6 @@ import {
 } from "@codesandbox/sandpack-react/unstyled";
 import CodePlaygroundProvider from "@/components/CustomCodePlayground/CodePlaygroundProvider";
 import CodePlaygroundLayout from "@/components/CustomCodePlayground/CodePlaygroundLayout";
-import {Sandpack} from "@codesandbox/sandpack-react";
 import CodePlaygroundConsoleProvider from "@/components/CustomCodePlayground/CodePlaygroundConsoleProvider";
 
 export interface CodePlaygroundProps {
