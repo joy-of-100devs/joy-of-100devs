@@ -20,12 +20,13 @@ export default function CodePlaygroundLayout(props: {
         <div className={"flex py-2 px-[12px] bg-background-1 items-center justify-between"}>
             <ColorEmphasis>Code Playground</ColorEmphasis>
             <div className={"flex-none flex gap-[8px] items-center"}>
-                <CodePlaygroundUtilityButton icon={RxMagicWand} onClick={async () => {
+                <CodePlaygroundUtilityButton icon={RxMagicWand}
+                                             title={"Format with Prettier"} onClick={async () => {
                     if (activeFile) {
                         await editFile(activeFile, await format(files[activeFile].code));
                     }
                 }}></CodePlaygroundUtilityButton>
-                <CodePlaygroundUtilityButton icon={RxReload} onClick={() => {
+                <CodePlaygroundUtilityButton title={"Reset code"} icon={RxReload} onClick={() => {
                     resetFiles();
                 }}></CodePlaygroundUtilityButton>
             </div>

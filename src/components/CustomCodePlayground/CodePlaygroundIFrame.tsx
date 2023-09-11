@@ -29,7 +29,9 @@ export const NavigatorContext = React.createContext<NavigatorContext>({
     },
 });
 
-function _CodePlaygroundIFrame() {
+function _CodePlaygroundIFrame(props: {
+    shown: boolean,
+}) {
     const iframeRef = React.useRef<HTMLIFrameElement | null>(null);
     const context = React.useContext(CodePlaygroundContext);
 
@@ -51,7 +53,7 @@ function _CodePlaygroundIFrame() {
     });
 
     return <NavigatorContext.Provider value={navigatorFunctions}>
-        <div className={`w-full h-full flex flex-col`}>
+        <div className={`w-full h-full flex-col ${props.shown ? "flex" : "hidden"}`}>
             {client && shouldNavigatorExist(client) && <CodePlaygroundNavigator/>}
             <div className={"flex flex-1 relative"}>
                 <iframe ref={iframeRef}

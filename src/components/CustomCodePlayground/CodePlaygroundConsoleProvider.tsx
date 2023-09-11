@@ -35,7 +35,6 @@ function CodePlaygroundConsoleProvider(props: {
     children?: React.ReactNode
 }) {
     const [logs, setLogs] = React.useState<Entry[]>([]);
-    console.log(logs);
     const addLogs = React.useCallback(function (entry: Entry) {
         setLogs(logs => {
             return produce(logs, draft => {

@@ -62,6 +62,14 @@ export function useClient(iframeRef: React.RefObject<HTMLIFrameElement | null>, 
         };
     });
 
+    React.useEffect(() => {
+        const unsub = client?.listen(e => {
+            console.log(e);
+        });
+
+        return () => unsub?.();
+    }, [client]);
+
     return client;
 }
 
