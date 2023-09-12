@@ -80,6 +80,19 @@ export function useClient(iframeRef: React.RefObject<HTMLIFrameElement | null>, 
 }
 
 export function useClientUpdate(client: SandpackClient | null, state: ClientUpdateState) {
+    const firstRunRef = React.useRef(false);
+    const [needsToUpdate, setNeedsToUpdate] = React.useState(false);
+
+    // If files are updated, needsToUpdate sets to true. Should not run on first mount.
+    React.useEffect(() => {
+        if (!firstRunRef.current) {
+            firstRunRef.current = true;
+            return;
+        }
+        setNeedsToUpdate(true);
+    }, [state.files]);
+
+    // If the needsToUpdate ever changes to true, the preview will refresh.
     React.useEffect(() => {
         function updateSandbox() {
             if (!client) return;
@@ -87,7 +100,7 @@ export function useClientUpdate(client: SandpackClient | null, state: ClientUpda
                 files: state.files,
             });
         }
-
+        if (!needsToUpdate) return;
         const timeout = window.setTimeout(save, 500);
 
         async function save() {
@@ -104,7 +117,7 @@ export function useClientUpdate(client: SandpackClient | null, state: ClientUpda
         return () => {
             clearTimeout(timeout);
         };
-    }, [state.files]);
+    }, [needsToUpdate, client, state.files]);
 }
 
 export function useClientNavigation(client: SandpackClient | null, config: ClientNavigationInitialConfig) {
