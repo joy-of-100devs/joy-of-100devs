@@ -4,7 +4,7 @@ import {loadSandpackClient, SandpackClient} from "@codesandbox/sandpack-client";
 import {SandboxEnvironment, SandpackFile} from "@codesandbox/sandpack-react/unstyled";
 import {getClientBaseUrl} from "@/components/CustomCodePlayground/helpers/navigator";
 import {useMemoizedObject} from "@/hooks/useMemoized";
-import {dispatchCommand} from "@/components/CustomCodePlayground/helpers/iframe";
+import {dispatchCommand, getClientType} from "@/components/CustomCodePlayground/helpers/iframe";
 import {
     patchClient404,
     patchClientInitialNavigation,
@@ -81,25 +81,30 @@ export function useClient(iframeRef: React.RefObject<HTMLIFrameElement | null>, 
 
 export function useClientUpdate(client: SandpackClient | null, state: ClientUpdateState) {
     React.useEffect(() => {
+        function updateSandbox() {
+            if (!client) return;
+            client.updateSandbox({
+                files: state.files,
+            });
+        }
+
         const timeout = window.setTimeout(save, 500);
 
         async function save() {
             if (!client || !client.iframe) return;
-            let url = await dispatchCommand<string>(client.iframe, "getUrl");
-            client.updateSandbox({
-                files: state.files,
-            });
-            requestAnimationFrame(() => {
-                if (url) {
-                    client.iframe.contentWindow?.location.replace(url);
-                }
-            });
+            if (getClientType(client) === "static") {
+                let url = await dispatchCommand<string>(client.iframe, "getUrl");
+                updateSandbox();
+                client.iframe.contentWindow?.location.replace(url);
+            } else {
+                updateSandbox();
+            }
         }
 
         return () => {
             clearTimeout(timeout);
         };
-    }, [client, state.files]);
+    }, [state.files]);
 }
 
 export function useClientNavigation(client: SandpackClient | null, config: ClientNavigationInitialConfig) {

@@ -1,3 +1,5 @@
+import {SandpackClient} from "@codesandbox/sandpack-client";
+
 export function dispatchCommand<Result>(iframe: HTMLIFrameElement, command: string, args?: any, timeout: number = 5): Promise<Result> {
     const invocationId = crypto.randomUUID();
 
@@ -30,4 +32,19 @@ export function dispatchCommand<Result>(iframe: HTMLIFrameElement, command: stri
 
         window.addEventListener("message", handle);
     });
+}
+
+
+export function getClientType(client: SandpackClient) {
+    // @ts-ignore accessing private members to infer type
+    if (client.previewController) {
+        return "static";
+    }
+    // @ts-ignore accessing private members to infer type
+    else if (client.bundlerURL) {
+        return "runtime";
+    }
+    else {
+        return "node";
+    }
 }
