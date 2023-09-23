@@ -4,6 +4,16 @@
 - This is a free, open-source course platform for the #100devs program that teaches you what you need to get a job as a web developer.
 - This course has an interactive code playground that allows you to directly preview code.
 
+## Roadmap
+- 🌟 Add and display users' completion data.
+- 🔥 Fix vulnerabilities on the server and microservice-side.
+- 🧠 Include Anki-like flashcard features right on the platform.
+- 🎬 Add video recordings to the platform to make the content more engaging.
+- 📺 Synchronize live-streaming from the @learnwithleon channel on Twitch.
+- 🪄 More lessons and modules!
+- 🧑‍💻 Ensure support for React and add Jest compatibility to the code playground and improve its stability.
+- 💻 Add support for directory and non-textual assets to the playground using Amazon S3 along with monkey-patching as much of Sandpack as necessary.
+
 ## Contribution guidelines for lessons
 
 ### Textual content
@@ -93,12 +103,5 @@
   - `environment`: The environment which the code will be executed. Can be `sandpack` or `create-react-app`. Other values should be supported (check Sandpack documentation) but it might not work due to the playground being completely custom.
   - `externalResources`: Any CSS or JavaScript files that you want to additionally load. For example, you can specify a `reset.css` file.
 
-## Roadmap
-- 🌟 Add and display users' completion data.
-- 🔥 Fix vulnerabilities on the server and microservice-side.
-- 🧠 Include Anki-like flashcard features right on the platform.
-- 🎬 Add video recordings to the platform to make the content more engaging.
-- 📺 Synchronize live-streaming from the @learnwithleon channel on Twitch.
-- 🪄 More lessons and modules!
-- 🧑‍💻 Ensure support for React and add Jest compatibility to the code playground and improve its stability.
-- 💻 Add support for directory and non-textual assets to the playground using Amazon S3 along with monkey-patching as much of Sandpack as necessary.
+## License
+- This course program is licensed to you under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode" rel="license">CC-BY-NC-SA 4.0</a>.
