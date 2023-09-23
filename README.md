@@ -107,6 +107,9 @@
 - Lesson contributions on this repository must link to another pull request on the <a href="https://github.com/joy-of-100devs/joy-of-100devs-asset-server">asset server</a> repository if you add any assets to your lesson and another on the <a href="https://github.com/joy-of-100devs/joy-of-100devs-repository-server">code playgrounds</a> repository if you add any code playgrounds.
 - Any pull requests in the supporting microservice repositories that are not linked to a PR in this repository will be withheld or rejected.
 
+## Getting help during contribution
+- You can DM me <a rel="me" href="https://twitter.com/khanhtncva">on Twatter</a> or join the <a href="https://discord.gg/100devs">100Devs Discord server</a>. The 100Devs fellows are happy to help!
+
 ## License
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This course platform is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
 
