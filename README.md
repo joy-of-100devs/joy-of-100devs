@@ -38,7 +38,7 @@
   - `publishedOn`: The date-time string. Should be a ISO-formatted time string that can be parsed.
   - `_id`: The ID of the lesson, generated using the `npm run generate-id` helper script that gets a standard MongoDB ID object. This value must never be changed throughout the lifetime of the app.
 
-### MDX implementations
+### MDX components
 - You should always use a HTML tag without issue, similar to traditional markdown.
 - To check which components you're allowed to use, look for the `CustomMDXRemote` component, which has a key-to-component mapping.
 - For example, there is a `PathSimulator` key in the component map. That means you can use a `<PathSimulator/>` element in any MDX file.
@@ -102,6 +102,10 @@
   - `startRoute`: The starting URL of the preview window/frame.
   - `environment`: The environment which the code will be executed. Can be `sandpack` or `create-react-app`. Other values should be supported (check Sandpack documentation) but it might not work due to the playground being completely custom.
   - `externalResources`: Any CSS or JavaScript files that you want to additionally load. For example, you can specify a `reset.css` file.
+
+### Pull requests
+- Lesson contributions on this repository must link to another pull request on the <a href="https://github.com/joy-of-100devs/joy-of-100devs-asset-server">asset server</a> repository if you add any assets to your lesson and another on the <a href="https://github.com/joy-of-100devs/joy-of-100devs-repository-server">code playgrounds</a> repository if you add any code playgrounds.
+- Any pull requests in the supporting microservice repositories that are not linked to a PR in this repository will be withheld or rejected.
 
 ## License
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This course platform is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
