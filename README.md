@@ -104,4 +104,6 @@
   - `externalResources`: Any CSS or JavaScript files that you want to additionally load. For example, you can specify a `reset.css` file.
 
 ## License
-- This course program is licensed to you under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode" rel="license">CC-BY-NC-SA 4.0</a>.
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This course platform is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
+In other words - sharing or creating a better copy of the course platform is encouraged! However, the copy must also be free of charge for its users.
